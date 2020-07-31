@@ -1,0 +1,59 @@
+info:
+  tag: ${IMAGE_TAG}
+  build:
+    artifact: ${PROJECT_ARTIFACT_ID}
+    name: ${PROJECT_NAME}
+    version: ${PROJECT_VERSION}
+    build: ${BUILD_DT}
+
+server:
+  port: 8080
+  servlet:
+    contextPath: /v1
+    
+management.endpoints.web.base-path: /
+management.endpoints.web.exposure.include: "*"
+  
+debug: false
+
+
+logging:
+  level:
+    root: INFO
+    org.springframework.web.filter.CommonsRequestLoggingFilter: DEBUG
+    
+    
+spring.mvc.async.request-timeout: 600000
+spring.main.allow-bean-definition-overriding: true
+
+
+
+#management:
+#  security:
+#    enabled: false
+
+
+---
+
+spring:
+  profiles: local
+  
+
+---
+
+spring:
+  profiles: dv
+  
+
+---
+
+spring:
+  profiles: it01
+  
+---
+
+spring:
+  profiles: it02
+  
+  
+         
