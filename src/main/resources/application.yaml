@@ -43,8 +43,20 @@ spring:
 
 spring:
   profiles: dv
-  
 
+  datasource:
+    url: jdbc:oracle:thin:@btln001089.corp.ads:41521/FWDSDV
+    username: APPOSTH_U1_DV02
+    password: APPOSTH_U1_DV02
+    driver: oracle.jdbc.OracleDriver
+    validationTimeout: 60000
+    minimumIdle: 1
+    maximumPoolSize: 5
+    idleTimeout: 300000
+
+  
+  
+     
 ---
 
 spring:
