@@ -22,7 +22,7 @@ public class MainController {
 	@GetMapping("/hello")
 	public @ResponseBody ResponseEntity<Object> hello() {
 
-		String version = "Welcome1...";
+		String version = "Welcome2...";
 		return new ResponseEntity<>(version, HttpStatus.OK);
 	}
 
