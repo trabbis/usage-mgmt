@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.telus.bill.repository.TeamMember;
 import com.telus.bill.repository.JdbcRepository;
+import com.telus.bill.repository.RawUsageListResponseVO;
 
 @RestController
 public class MainController {
@@ -32,6 +33,14 @@ public class MainController {
 		//String version = "Welcome...";
 		
 		List<TeamMember> lists = jdbcRepository.findByNameAndPrice("T010050");
+		
+		return new ResponseEntity<>(lists, HttpStatus.OK);
+	}
+	
+	@GetMapping("/getRawUsageList")
+	public @ResponseBody ResponseEntity<Object> getRawUsageList() {
+
+		RawUsageListResponseVO lists = jdbcRepository.getRawUsageList("WISP");
 		
 		return new ResponseEntity<>(lists, HttpStatus.OK);
 	}
