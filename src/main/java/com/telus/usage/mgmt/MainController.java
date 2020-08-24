@@ -1,4 +1,4 @@
-package com.telus.bill;
+package com.telus.usage.mgmt;
 
 
 import java.util.List;
@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.telus.bill.repository.TeamMember;
-import com.telus.bill.repository.JdbcRepository;
-import com.telus.bill.repository.RawUsageListResponseVO;
+import com.telus.usage.mgmt.beans.RawUsageListResponseVO;
+import com.telus.usage.mgmt.beans.TeamMember;
+import com.telus.usage.mgmt.repository.JdbcRepository;
 
 @RestController
 public class MainController {
@@ -27,15 +27,15 @@ public class MainController {
 		return new ResponseEntity<>(version, HttpStatus.OK);
 	}
 
-	@GetMapping("/teamMember")
-	public @ResponseBody ResponseEntity<Object> getTeamMember() {
-
-		//String version = "Welcome...";
-		
-		List<TeamMember> lists = jdbcRepository.findByNameAndPrice("T010050");
-		
-		return new ResponseEntity<>(lists, HttpStatus.OK);
-	}
+//	@GetMapping("/teamMember")
+//	public @ResponseBody ResponseEntity<Object> getTeamMember() {
+//
+//		//String version = "Welcome...";
+//		
+//		List<TeamMember> lists = jdbcRepository.findByNameAndPrice("T010050");
+//		
+//		return new ResponseEntity<>(lists, HttpStatus.OK);
+//	}
 	
 	@GetMapping("/getRawUsageList")
 	public @ResponseBody ResponseEntity<Object> getRawUsageList() {

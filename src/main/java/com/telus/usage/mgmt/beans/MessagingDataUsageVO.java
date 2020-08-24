@@ -1,4 +1,4 @@
-package com.telus.bill.repository;
+package com.telus.usage.mgmt.beans;
 
 import java.util.Date;
 

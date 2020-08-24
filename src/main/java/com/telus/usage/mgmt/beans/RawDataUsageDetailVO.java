@@ -1,6 +1,4 @@
-package com.telus.bill.repository;
-
-
+package com.telus.usage.mgmt.beans;
 
 public class RawDataUsageDetailVO extends ValueObject {
 	

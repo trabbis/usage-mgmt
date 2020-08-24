@@ -1,4 +1,4 @@
-package com.telus.bill.repository;
+package com.telus.usage.mgmt.repository;
 
 import java.util.List;
 
@@ -7,6 +7,10 @@ import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
+
+import com.telus.usage.mgmt.beans.DataServiceEventVO;
+import com.telus.usage.mgmt.beans.RawUsageListResponseVO;
+import com.telus.usage.mgmt.beans.TeamMember;
 
 @Repository
 public class JdbcRepository {

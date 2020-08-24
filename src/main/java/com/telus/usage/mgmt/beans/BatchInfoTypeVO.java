@@ -1,4 +1,4 @@
-package com.telus.bill.repository;
+package com.telus.usage.mgmt.beans;
 
 public class BatchInfoTypeVO extends ValueObject {
 	private Long batchNumber;
