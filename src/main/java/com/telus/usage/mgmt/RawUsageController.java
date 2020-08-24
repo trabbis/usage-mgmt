@@ -15,7 +15,7 @@ import com.telus.usage.mgmt.beans.TeamMember;
 import com.telus.usage.mgmt.repository.JdbcRepository;
 
 @RestController
-public class MainController {
+public class RawUsageController {
 
 	@Autowired
 	private JdbcRepository jdbcRepository;
