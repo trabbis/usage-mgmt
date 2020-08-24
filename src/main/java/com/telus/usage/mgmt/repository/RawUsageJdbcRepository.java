@@ -14,7 +14,7 @@ import com.telus.usage.mgmt.beans.SearchRawUsageListVO;
 import com.telus.usage.mgmt.beans.TeamMember;
 
 @Repository
-public class JdbcRepository {
+public class RawUsageJdbcRepository {
 	
 	@Autowired
 	private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
@@ -43,21 +43,6 @@ public class JdbcRepository {
 			"	and rownum <= 100 "; //TODO remove later
 
 	
-    public List<TeamMember> findByNameAndPrice(String name) {
-
-        MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
-        mapSqlParameterSource.addValue("id", name);
-        
-        return namedParameterJdbcTemplate.query(
-        		  "select * from team_member where TEAM_MEMBER_ID = :id",
-                mapSqlParameterSource,
-                (rs, rowNum) ->
-                        new TeamMember(
-                                rs.getString("team_member_id"),
-                                rs.getString("family_name")
-                        )
-        );
-    }
 	
 
     public RawUsageListResponseVO getRawUsageList(SearchRawUsageListVO searchRawUsageListVO) {

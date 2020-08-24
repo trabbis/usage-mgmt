@@ -17,13 +17,13 @@ import com.telus.usage.mgmt.beans.RawUsageListResponseVO;
 import com.telus.usage.mgmt.beans.SearchRawUsageListVO;
 import com.telus.usage.mgmt.beans.SearchRawUsageVO;
 import com.telus.usage.mgmt.beans.TeamMember;
-import com.telus.usage.mgmt.repository.JdbcRepository;
+import com.telus.usage.mgmt.repository.RawUsageJdbcRepository;
 
 @RestController
 public class RawUsageController {
 
 	@Autowired
-	private JdbcRepository jdbcRepository;
+	private RawUsageJdbcRepository jdbcRepository;
 	
 	@GetMapping("/")
 	public @ResponseBody ResponseEntity<Object> hello() {
