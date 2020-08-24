@@ -46,8 +46,8 @@ spring:
 
   datasource:
     url: jdbc:oracle:thin:@//IPDRB1PT-scan.corp.ads:41521/ipdrb1ptsva
-    username: T917297
-    password: dianaadam@123
+    username: dsal_app
+    password: dsalapp
     driver: oracle.jdbc.OracleDriver
     validationTimeout: 60000
     minimumIdle: 1
