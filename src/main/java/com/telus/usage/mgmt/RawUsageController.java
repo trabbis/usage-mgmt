@@ -20,10 +20,10 @@ public class RawUsageController {
 	@Autowired
 	private JdbcRepository jdbcRepository;
 	
-	@GetMapping("/hello")
+	@GetMapping("/")
 	public @ResponseBody ResponseEntity<Object> hello() {
 
-		String version = "Welcome2...";
+		String version = "Welcome...";
 		return new ResponseEntity<>(version, HttpStatus.OK);
 	}
 

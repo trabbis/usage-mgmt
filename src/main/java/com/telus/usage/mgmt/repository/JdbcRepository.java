@@ -46,12 +46,8 @@ public class JdbcRepository {
 
         MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
         mapSqlParameterSource.addValue("id", name);
-//        mapSqlParameterSource.addValue("price", price);
-
-//        select *  from team_member where TEAM_MEMBER_ID = :id
         
         return namedParameterJdbcTemplate.query(
-//                "select * from books where name like :name and price <= :price",
         		  "select * from team_member where TEAM_MEMBER_ID = :id",
                 mapSqlParameterSource,
                 (rs, rowNum) ->
@@ -71,7 +67,7 @@ public class JdbcRepository {
         List<DataServiceEventVO> dataService =  namedParameterJdbcTemplate.query(
     			SELECT_CIPDR_RAW_USAGE,
                 mapSqlParameterSource,
-                new RawUsageRowMapper());
+                new RawUsageListRowMapper());
         
         RawUsageListResponseVO rawUsage = new RawUsageListResponseVO(null);
         rawUsage.setRawUsageList(dataService);
