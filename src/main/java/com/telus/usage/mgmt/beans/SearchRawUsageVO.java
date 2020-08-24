@@ -4,8 +4,8 @@ import java.util.Date;
 
 
 public class SearchRawUsageVO extends ValueObject {
-	private Date fromDate;
-	private Date toDate;
+	private String fromDate;
+	private String toDate;
 	private String phoneNumber;
 	private String serviceType;
 	private String imsiNumber;
@@ -30,16 +30,16 @@ public class SearchRawUsageVO extends ValueObject {
 	public void setRecordTypeCd(String recordTypeCd) {
 		this.recordTypeCd = recordTypeCd;
 	}
-	public Date getFromDate() {
+	public String getFromDate() {
 		return fromDate;
 	}
-	public void setFromDate(Date fromDate) {
+	public void setFromDate(String fromDate) {
 		this.fromDate = fromDate;
 	}
-	public Date getToDate() {
+	public String getToDate() {
 		return toDate;
 	}
-	public void setToDate(Date toDate) {
+	public void setToDate(String toDate) {
 		this.toDate = toDate;
 	}
 	public String getPhoneNumber() {

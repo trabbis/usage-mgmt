@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.telus.usage.mgmt.beans.RawUsageListResponseVO;
 import com.telus.usage.mgmt.beans.SearchRawUsageListVO;
+import com.telus.usage.mgmt.beans.SearchRawUsageVO;
 import com.telus.usage.mgmt.beans.TeamMember;
 import com.telus.usage.mgmt.repository.JdbcRepository;
 
@@ -35,12 +36,22 @@ public class RawUsageController {
 	public @ResponseBody ResponseEntity<Object> getRawUsageList(
 			@RequestParam(value = "phoneNumber", required = true) String phoneNumber,
 			@RequestParam(value = "serviceType", required = true) String serviceType,
-			@RequestParam(value = "fromDate", required = true)  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) String fromDate) {
+			@RequestParam(value = "fromDate", required = true)  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) String fromDate,
+			@RequestParam(value = "toDate", required = true)  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) String toDate) {
 
 		
 		SearchRawUsageListVO searchRawUsageListVO = new SearchRawUsageListVO();
+		SearchRawUsageVO searchRawUsageVO = new SearchRawUsageVO();
+		searchRawUsageVO.setFromDate(fromDate);
+		searchRawUsageVO.setToDate(toDate);
+		searchRawUsageVO.setPhoneNumber(phoneNumber);
+		searchRawUsageVO.setServiceType(serviceType);
 		
-		RawUsageListResponseVO lists = jdbcRepository.getRawUsageList("WISP");
+		searchRawUsageListVO.setSearchRawUsage(searchRawUsageVO);
+		
+		
+		
+		RawUsageListResponseVO lists = jdbcRepository.getRawUsageList(searchRawUsageListVO);
 		
 		return new ResponseEntity<>(lists, HttpStatus.OK);
 	}

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.telus.usage.mgmt.beans.DataServiceEventVO;
 import com.telus.usage.mgmt.beans.RawUsageListResponseVO;
+import com.telus.usage.mgmt.beans.SearchRawUsageListVO;
 import com.telus.usage.mgmt.beans.TeamMember;
 
 @Repository
@@ -59,10 +60,10 @@ public class JdbcRepository {
     }
 	
 
-    public RawUsageListResponseVO getRawUsageList(String name) {
+    public RawUsageListResponseVO getRawUsageList(SearchRawUsageListVO searchRawUsageListVO) {
 
         MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
-        mapSqlParameterSource.addValue("eventTypeCd", name);
+        mapSqlParameterSource.addValue("eventTypeCd", searchRawUsageListVO.getSearchRawUsage().getServiceType());
         
         List<DataServiceEventVO> dataService =  namedParameterJdbcTemplate.query(
     			SELECT_CIPDR_RAW_USAGE,
