@@ -19,7 +19,7 @@ public class RawUsageJdbcRepository {
 	
 	@Autowired
 	@Qualifier("primaryJdbcTemplate")
-	private NamedParameterJdbcTemplate primaryJdbcTemplate;
+	private NamedParameterJdbcTemplate jdbcTemplate;
 	
 	public static final String SELECT_CIPDR_RAW_USAGE=
 			" select /*+ INDEX(DATA_SRVC_EVENT  I_DATA_SRVC_EVENT_01) */ " +
@@ -52,7 +52,7 @@ public class RawUsageJdbcRepository {
         MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
         mapSqlParameterSource.addValue("eventTypeCd", searchRawUsageListVO.getSearchRawUsage().getServiceType());
         
-        List<DataServiceEventVO> dataService =  primaryJdbcTemplate.query(
+        List<DataServiceEventVO> dataService =  jdbcTemplate.query(
     			SELECT_CIPDR_RAW_USAGE,
                 mapSqlParameterSource,
                 new RawUsageListRowMapper());

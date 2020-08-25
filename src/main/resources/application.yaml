@@ -54,10 +54,10 @@ spring:
     maximumPoolSize: 5
     idleTimeout: 300000
     
-  datasource2:
-    jdbc-url: jdbc:oracle:thin:@btln001089.corp.ads:41521/FWDSDV
-    username: APPOSTH_U1_DV02
-    password: APPOSTH_U1_DV02
+  datasource-m1:
+    jdbc-url: jdbc:oracle:thin:@//IPDRM1PT-scan.corp.ads:41521/IPDRM1PTsv1
+    username: dsal_app
+    password: dsalapp
     driverClassName: oracle.jdbc.OracleDriver
     validationTimeout: 60000
     minimumIdle: 1

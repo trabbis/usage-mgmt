@@ -14,21 +14,21 @@ import com.telus.usage.mgmt.beans.TeamMember;
 public class SecondJdbcRepository {
 	
 	@Autowired
-	@Qualifier("secondJdbcTemplate")
-	private NamedParameterJdbcTemplate secondJdbcTemplate;
+	@Qualifier("m1JdbcTemplate")
+	private NamedParameterJdbcTemplate jdbcTemplate;
 	
     public List<TeamMember> findByNameAndPrice(String name) {
 
         MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
-        mapSqlParameterSource.addValue("id", name);
+//        mapSqlParameterSource.addValue("id", name);
         
-        return secondJdbcTemplate.query(
-        		  "select * from team_member where TEAM_MEMBER_ID = :id",
+        return jdbcTemplate.query(
+        		  "select * from rated_data_srvc_event where rownum <= 100",
                 mapSqlParameterSource,
                 (rs, rowNum) ->
                         new TeamMember(
-                                rs.getString("team_member_id"),
-                                rs.getString("family_name")
+                                rs.getString("PRICE_PLAN_SRVC_PACKAGE_CD"),
+                                rs.getString("SRVC_PACKAGE_CD")
                         )
         );
     }

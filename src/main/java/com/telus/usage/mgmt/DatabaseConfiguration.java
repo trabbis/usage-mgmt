@@ -19,8 +19,8 @@ public class DatabaseConfiguration {
 	    return DataSourceBuilder.create().build();
 	}
 	@Bean
-	@ConfigurationProperties(prefix = "spring.datasource2")
-	DataSource secondDataSource() {
+	@ConfigurationProperties(prefix = "spring.datasource-m1")
+	DataSource m1DataSource() {
 	    return DataSourceBuilder.create().build();
 	}
 	@Bean
@@ -28,8 +28,8 @@ public class DatabaseConfiguration {
 	    return new NamedParameterJdbcTemplate(primaryDataSource());
 	}
 	@Bean
-	NamedParameterJdbcTemplate secondJdbcTemplate() {
-	    return new NamedParameterJdbcTemplate(secondDataSource());
+	NamedParameterJdbcTemplate m1JdbcTemplate() {
+	    return new NamedParameterJdbcTemplate(m1DataSource());
 	}
 	
 
