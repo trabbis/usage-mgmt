@@ -45,10 +45,20 @@ spring:
   profiles: dv
 
   datasource:
-    url: jdbc:oracle:thin:@//IPDRB1PT-scan.corp.ads:41521/ipdrb1ptsva
+    jdbc-url: jdbc:oracle:thin:@//IPDRB1PT-scan.corp.ads:41521/ipdrb1ptsva
     username: dsal_app
     password: dsalapp
-    driver: oracle.jdbc.OracleDriver
+    driverClassName: oracle.jdbc.OracleDriver
+    validationTimeout: 60000
+    minimumIdle: 1
+    maximumPoolSize: 5
+    idleTimeout: 300000
+    
+  datasource2:
+    jdbc-url: jdbc:oracle:thin:@btln001089.corp.ads:41521/FWDSDV
+    username: APPOSTH_U1_DV02
+    password: APPOSTH_U1_DV02
+    driverClassName: oracle.jdbc.OracleDriver
     validationTimeout: 60000
     minimumIdle: 1
     maximumPoolSize: 5

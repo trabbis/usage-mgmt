@@ -18,12 +18,16 @@ import com.telus.usage.mgmt.beans.SearchRawUsageListVO;
 import com.telus.usage.mgmt.beans.SearchRawUsageVO;
 import com.telus.usage.mgmt.beans.TeamMember;
 import com.telus.usage.mgmt.repository.RawUsageJdbcRepository;
+import com.telus.usage.mgmt.repository.SecondJdbcRepository;
 
 @RestController
 public class RawUsageController {
 
 	@Autowired
 	private RawUsageJdbcRepository jdbcRepository;
+
+	@Autowired
+	private SecondJdbcRepository secondJdbcRepository;
 	
 	@GetMapping("/")
 	public @ResponseBody ResponseEntity<Object> hello() {
@@ -31,6 +35,16 @@ public class RawUsageController {
 		String version = "Welcome...";
 		return new ResponseEntity<>(version, HttpStatus.OK);
 	}
+	
+	@GetMapping("/teamMember")
+	public @ResponseBody ResponseEntity<Object> getTeamMember() {
+
+		//String version = "Welcome...";
+		
+		List<TeamMember> lists = secondJdbcRepository.findByNameAndPrice("T010050");
+		
+		return new ResponseEntity<>(lists, HttpStatus.OK);
+	}	
 
 	@GetMapping("/getRawUsageList")
 	public @ResponseBody ResponseEntity<Object> getRawUsageList(
