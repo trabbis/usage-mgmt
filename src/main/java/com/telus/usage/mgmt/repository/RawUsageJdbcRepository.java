@@ -6,16 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import com.telus.usage.mgmt.beans.DataServiceEventVO;
 import com.telus.usage.mgmt.beans.RawUsageListResponseVO;
 import com.telus.usage.mgmt.beans.SearchRawUsageListVO;
-import com.telus.usage.mgmt.beans.TeamMember;
 
 @Repository
-public class RawUsageJdbcRepository {
+public class RawUsageJdbcRepository implements IJdbcRepository {
 	
 	@Autowired
 	@Qualifier("primaryJdbcTemplate")
@@ -47,6 +45,7 @@ public class RawUsageJdbcRepository {
 	
 	
 
+	@Override
     public RawUsageListResponseVO getRawUsageList(SearchRawUsageListVO searchRawUsageListVO) {
 
         MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
@@ -64,7 +63,7 @@ public class RawUsageJdbcRepository {
         
         
     }
-	
+
 
 
 }

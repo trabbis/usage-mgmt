@@ -17,8 +17,8 @@ import com.telus.usage.mgmt.beans.RawUsageListResponseVO;
 import com.telus.usage.mgmt.beans.SearchRawUsageListVO;
 import com.telus.usage.mgmt.beans.SearchRawUsageVO;
 import com.telus.usage.mgmt.beans.TeamMember;
+import com.telus.usage.mgmt.repository.MediatedJdbcRepository;
 import com.telus.usage.mgmt.repository.RawUsageJdbcRepository;
-import com.telus.usage.mgmt.repository.SecondJdbcRepository;
 
 @RestController
 public class RawUsageController {
@@ -27,7 +27,7 @@ public class RawUsageController {
 	private RawUsageJdbcRepository jdbcRepository;
 
 	@Autowired
-	private SecondJdbcRepository secondJdbcRepository;
+	private MediatedJdbcRepository secondJdbcRepository;
 	
 	@GetMapping("/")
 	public @ResponseBody ResponseEntity<Object> hello() {

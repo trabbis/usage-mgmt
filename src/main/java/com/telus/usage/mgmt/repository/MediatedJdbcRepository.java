@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 import com.telus.usage.mgmt.beans.TeamMember;
 
 @Repository
-public class SecondJdbcRepository {
+public class MediatedJdbcRepository {
 	
 	@Autowired
 	@Qualifier("m1JdbcTemplate")
