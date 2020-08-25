@@ -14,15 +14,15 @@ import com.telus.usage.mgmt.beans.TeamMember;
 public class SecondJdbcRepository {
 	
 	@Autowired
-	@Qualifier("namedParameterJdbcTemplateTwo")
-	private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+	@Qualifier("secondJdbcTemplate")
+	private NamedParameterJdbcTemplate secondJdbcTemplate;
 	
     public List<TeamMember> findByNameAndPrice(String name) {
 
         MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
         mapSqlParameterSource.addValue("id", name);
         
-        return namedParameterJdbcTemplate.query(
+        return secondJdbcTemplate.query(
         		  "select * from team_member where TEAM_MEMBER_ID = :id",
                 mapSqlParameterSource,
                 (rs, rowNum) ->

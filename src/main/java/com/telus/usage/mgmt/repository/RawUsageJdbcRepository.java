@@ -18,8 +18,8 @@ import com.telus.usage.mgmt.beans.TeamMember;
 public class RawUsageJdbcRepository {
 	
 	@Autowired
-	@Qualifier("namedParameterJdbcTemplateOne")
-	private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+	@Qualifier("primaryJdbcTemplate")
+	private NamedParameterJdbcTemplate primaryJdbcTemplate;
 	
 	public static final String SELECT_CIPDR_RAW_USAGE=
 			" select /*+ INDEX(DATA_SRVC_EVENT  I_DATA_SRVC_EVENT_01) */ " +
@@ -52,7 +52,7 @@ public class RawUsageJdbcRepository {
         MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
         mapSqlParameterSource.addValue("eventTypeCd", searchRawUsageListVO.getSearchRawUsage().getServiceType());
         
-        List<DataServiceEventVO> dataService =  namedParameterJdbcTemplate.query(
+        List<DataServiceEventVO> dataService =  primaryJdbcTemplate.query(
     			SELECT_CIPDR_RAW_USAGE,
                 mapSqlParameterSource,
                 new RawUsageListRowMapper());

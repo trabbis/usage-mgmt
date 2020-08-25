@@ -15,21 +15,21 @@ public class DatabaseConfiguration {
 	@Bean
 	@Primary
 	@ConfigurationProperties(prefix = "spring.datasource")
-	DataSource dataSourceOne() {
+	DataSource primaryDataSource() {
 	    return DataSourceBuilder.create().build();
 	}
 	@Bean
 	@ConfigurationProperties(prefix = "spring.datasource2")
-	DataSource dataSourceTwo() {
+	DataSource secondDataSource() {
 	    return DataSourceBuilder.create().build();
 	}
 	@Bean
-	NamedParameterJdbcTemplate namedParameterJdbcTemplateOne() {
-	    return new NamedParameterJdbcTemplate(dataSourceOne());
+	NamedParameterJdbcTemplate primaryJdbcTemplate() {
+	    return new NamedParameterJdbcTemplate(primaryDataSource());
 	}
 	@Bean
-	NamedParameterJdbcTemplate namedParameterJdbcTemplateTwo() {
-	    return new NamedParameterJdbcTemplate(dataSourceTwo());
+	NamedParameterJdbcTemplate secondJdbcTemplate() {
+	    return new NamedParameterJdbcTemplate(secondDataSource());
 	}
 	
 
