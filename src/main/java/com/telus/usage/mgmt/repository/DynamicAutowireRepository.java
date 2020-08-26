@@ -19,12 +19,6 @@ public class DynamicAutowireRepository {
                 .collect(Collectors.toMap(IJdbcRepository::getRepositoryCode, Function.identity()));
     }
  
-//    public boolean isServerActive(String isoCountryCode, int serverId) {
-//        RegionService service = servicesByCountryCode.get(isoCountryCode);
-// 
-//        return service.isServerActive(serverId);
-//    }
-    
     public IJdbcRepository getRepository(String code) {
     	return repositories.get(code);
     	

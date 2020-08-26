@@ -26,14 +26,7 @@ import com.telus.usage.mgmt.repository.IJdbcRepository;
 public class RawUsageController {
 
 	@Autowired
-	private RawUsageJdbcRepository jdbcRepository;
-
-	@Autowired
-	private MediatedJdbcRepository secondJdbcRepository;
-	
-	@Autowired
 	private DynamicAutowireRepository dynamicAutowireRepository;
-	
 	
 	
 	@GetMapping("/")
@@ -45,12 +38,12 @@ public class RawUsageController {
 		return new ResponseEntity<>(version, HttpStatus.OK);
 	}
 	
-	@GetMapping("/teamMember")
-	public @ResponseBody ResponseEntity<Object> getTeamMember() {
+	@GetMapping("/getMediated")
+	public @ResponseBody ResponseEntity<Object> getMediated() {
 
-//		IJdbcRepository iJdbcRepository = dynamicAutowireRepository.getRepository("MEDIATED");
+		IJdbcRepository jdbcRepository = dynamicAutowireRepository.getRepository("MEDIATED");
 		
-		List<TeamMember> lists = secondJdbcRepository.findByNameAndPrice("T010050");
+		RawUsageListResponseVO lists = jdbcRepository.getRawUsageList(null);
 		
 		return new ResponseEntity<>(lists, HttpStatus.OK);
 	}	
@@ -72,9 +65,9 @@ public class RawUsageController {
 		
 		searchRawUsageListVO.setSearchRawUsage(searchRawUsageVO);
 		
-		IJdbcRepository iJdbcRepository = dynamicAutowireRepository.getRepository("RAW");
+		IJdbcRepository jdbcRepository = dynamicAutowireRepository.getRepository("RAW");
 		
-		RawUsageListResponseVO lists = iJdbcRepository.getRawUsageList(searchRawUsageListVO);
+		RawUsageListResponseVO lists = jdbcRepository.getRawUsageList(searchRawUsageListVO);
 		
 		return new ResponseEntity<>(lists, HttpStatus.OK);
 	}

@@ -1,5 +1,6 @@
 package com.telus.usage.mgmt.repository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.telus.usage.mgmt.beans.DataServiceEventVO;
 import com.telus.usage.mgmt.beans.RawUsageListResponseVO;
 import com.telus.usage.mgmt.beans.SearchRawUsageListVO;
 import com.telus.usage.mgmt.beans.TeamMember;
@@ -19,7 +21,7 @@ public class MediatedJdbcRepository implements IJdbcRepository {
 	@Qualifier("m1JdbcTemplate")
 	private NamedParameterJdbcTemplate jdbcTemplate;
 	
-    public List<TeamMember> findByNameAndPrice(String name) {
+    private List<TeamMember> findByNameAndPrice(String name) {
 
         MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
 //        mapSqlParameterSource.addValue("id", name);
@@ -42,8 +44,19 @@ public class MediatedJdbcRepository implements IJdbcRepository {
 
 	@Override
 	public RawUsageListResponseVO getRawUsageList(SearchRawUsageListVO searchRulVO) {
-		//TODO throw the Exception
-		return null;
+        
+		findByNameAndPrice(null);
+		
+		RawUsageListResponseVO rawUsage = new RawUsageListResponseVO(null);
+		
+		List<DataServiceEventVO> dataService = new ArrayList<DataServiceEventVO>();
+		DataServiceEventVO dataServiceEventVO = new DataServiceEventVO();
+		dataServiceEventVO.setAccountingPlanName("accountingPlanName");
+		dataService.add(dataServiceEventVO);
+		
+        rawUsage.setRawUsageList(dataService);
+        
+		return rawUsage;
 	}
 
 
