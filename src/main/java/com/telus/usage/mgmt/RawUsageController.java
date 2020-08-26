@@ -19,6 +19,8 @@ import com.telus.usage.mgmt.beans.SearchRawUsageVO;
 import com.telus.usage.mgmt.beans.TeamMember;
 import com.telus.usage.mgmt.repository.MediatedJdbcRepository;
 import com.telus.usage.mgmt.repository.RawUsageJdbcRepository;
+import com.telus.usage.mgmt.response.RawUsageListResponse;
+import com.telus.usage.mgmt.util.Convertor;
 import com.telus.usage.mgmt.repository.DynamicAutowireRepository;
 import com.telus.usage.mgmt.repository.IJdbcRepository;
 
@@ -68,8 +70,14 @@ public class RawUsageController {
 		IJdbcRepository jdbcRepository = dynamicAutowireRepository.getRepository("RAW");
 		
 		RawUsageListResponseVO lists = jdbcRepository.getRawUsageList(searchRawUsageListVO);
-		
-		return new ResponseEntity<>(lists, HttpStatus.OK);
+		RawUsageListResponse response = null;
+		try {
+			response = Convertor.convert(lists);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
 	
 	
