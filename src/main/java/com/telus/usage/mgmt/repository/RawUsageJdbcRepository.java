@@ -64,6 +64,11 @@ public class RawUsageJdbcRepository implements IJdbcRepository {
         
     }
 
+	@Override
+	public String getRepositoryCode() {
+		return "RAW";
+	}
+
 
 
 }

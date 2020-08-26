@@ -8,10 +8,12 @@ import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.telus.usage.mgmt.beans.RawUsageListResponseVO;
+import com.telus.usage.mgmt.beans.SearchRawUsageListVO;
 import com.telus.usage.mgmt.beans.TeamMember;
 
 @Repository
-public class MediatedJdbcRepository {
+public class MediatedJdbcRepository implements IJdbcRepository {
 	
 	@Autowired
 	@Qualifier("m1JdbcTemplate")
@@ -32,6 +34,17 @@ public class MediatedJdbcRepository {
                         )
         );
     }
+
+	@Override
+	public String getRepositoryCode() {
+		return "MEDIATED";
+	}
+
+	@Override
+	public RawUsageListResponseVO getRawUsageList(SearchRawUsageListVO searchRulVO) {
+		//TODO throw the Exception
+		return null;
+	}
 
 
 }
