@@ -24,6 +24,7 @@ import com.telus.usage.mgmt.beans.TestModel;
 import com.telus.usage.mgmt.repository.MediatedJdbcRepository;
 import com.telus.usage.mgmt.repository.RawUsageJdbcRepository;
 import com.telus.usage.mgmt.response.RawUsageListResponse;
+import com.telus.usage.mgmt.services.RawUsageService;
 import com.telus.usage.mgmt.util.Convertor;
 import com.telus.usage.mgmt.repository.DynamicAutowireRepository;
 import com.telus.usage.mgmt.repository.IJdbcRepository;
@@ -35,6 +36,9 @@ public class RawUsageController {
 	
 	@Autowired
 	private DynamicAutowireRepository dynamicAutowireRepository;
+	
+	@Autowired
+	private RawUsageService rawUsageService;
 	
 	
 	@GetMapping("/")
@@ -73,6 +77,7 @@ public class RawUsageController {
 		
 		searchRawUsageListVO.setSearchRawUsage(searchRawUsageVO);
 		
+		/*
 		IJdbcRepository jdbcRepository = dynamicAutowireRepository.getRepository("RAW");
 		
 		RawUsageListResponseVO lists = jdbcRepository.getRawUsageList(searchRawUsageListVO);
@@ -88,6 +93,10 @@ public class RawUsageController {
 //			return new ResponseEntity<>(e.getMessage(), headers, HttpStatus.INTERNAL_SERVER_ERROR);
 //		}
 		response = Convertor.convert(lists);
+		*/
+		
+		
+		RawUsageListResponse response = rawUsageService.getRawUsageList(searchRawUsageListVO);
 		
 		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
