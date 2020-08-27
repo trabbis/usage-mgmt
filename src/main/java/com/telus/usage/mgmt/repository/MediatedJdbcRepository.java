@@ -12,7 +12,7 @@ import org.springframework.stereotype.Repository;
 import com.telus.usage.mgmt.beans.DataServiceEventVO;
 import com.telus.usage.mgmt.beans.RawUsageListResponseVO;
 import com.telus.usage.mgmt.beans.SearchRawUsageListVO;
-import com.telus.usage.mgmt.beans.TeamMember;
+import com.telus.usage.mgmt.beans.TestModel;
 
 @Repository
 public class MediatedJdbcRepository implements IJdbcRepository {
@@ -21,7 +21,7 @@ public class MediatedJdbcRepository implements IJdbcRepository {
 	@Qualifier("m1JdbcTemplate")
 	private NamedParameterJdbcTemplate jdbcTemplate;
 	
-    private List<TeamMember> findByNameAndPrice(String name) {
+    private List<TestModel> findByNameAndPrice(String name) {
 
         MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
 //        mapSqlParameterSource.addValue("id", name);
@@ -30,7 +30,7 @@ public class MediatedJdbcRepository implements IJdbcRepository {
         		  "select * from rated_data_srvc_event where rownum <= 100",
                 mapSqlParameterSource,
                 (rs, rowNum) ->
-                        new TeamMember(
+                        new TestModel(
                                 rs.getString("PRICE_PLAN_SRVC_PACKAGE_CD"),
                                 rs.getString("SRVC_PACKAGE_CD")
                         )

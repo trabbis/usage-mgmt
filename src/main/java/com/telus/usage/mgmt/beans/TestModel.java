@@ -1,12 +1,13 @@
 package com.telus.usage.mgmt.beans;
 
-public class TeamMember {
+//TODO delete after POC completed
+public class TestModel {
 
 	private String id;
     private String name;
     //private BigDecimal price;
     
-    public TeamMember(String id, String name) {
+    public TestModel(String id, String name) {
     	this.id = id;
     	this.name = name;
     }
