@@ -21,9 +21,19 @@ public class RawUsageService {
 		IJdbcRepository jdbcRepository = dynamicAutowireRepository.getRepository("RAW");
 		
 		RawUsageListResponseVO lists = jdbcRepository.getRawUsageList(searchRawUsageListVO);
-		
+
 		return Convertor.convert(lists);
 		
+	}
+
+	//Just for testing multiple dbs
+	public RawUsageListResponseVO getRemediatedUsageList() throws Exception {
+		
+		IJdbcRepository jdbcRepository = dynamicAutowireRepository.getRepository("MEDIATED");
+		
+		RawUsageListResponseVO lists = jdbcRepository.getRawUsageList(null);
+
+		return lists;
 	}
 
 

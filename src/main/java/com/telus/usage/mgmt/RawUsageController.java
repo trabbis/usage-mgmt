@@ -1,18 +1,13 @@
 package com.telus.usage.mgmt;
 
 
-import java.util.List;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,22 +15,13 @@ import org.springframework.web.bind.annotation.RestController;
 import com.telus.usage.mgmt.beans.RawUsageListResponseVO;
 import com.telus.usage.mgmt.beans.SearchRawUsageListVO;
 import com.telus.usage.mgmt.beans.SearchRawUsageVO;
-import com.telus.usage.mgmt.beans.TestModel;
-import com.telus.usage.mgmt.repository.MediatedJdbcRepository;
-import com.telus.usage.mgmt.repository.RawUsageJdbcRepository;
 import com.telus.usage.mgmt.response.RawUsageListResponse;
 import com.telus.usage.mgmt.services.RawUsageService;
-import com.telus.usage.mgmt.util.Convertor;
-import com.telus.usage.mgmt.repository.DynamicAutowireRepository;
-import com.telus.usage.mgmt.repository.IJdbcRepository;
 
 @RestController
 public class RawUsageController {
 
 	private static Logger log = LoggerFactory.getLogger(RawUsageController.class);
-	
-	@Autowired
-	private DynamicAutowireRepository dynamicAutowireRepository;
 	
 	@Autowired
 	private RawUsageService rawUsageService;
@@ -51,11 +37,8 @@ public class RawUsageController {
 	}
 	
 	@GetMapping("/getMediated")
-	public @ResponseBody ResponseEntity<Object> getMediated() {
-
-		IJdbcRepository jdbcRepository = dynamicAutowireRepository.getRepository("MEDIATED");
-		
-		RawUsageListResponseVO lists = jdbcRepository.getRawUsageList(null);
+	public @ResponseBody ResponseEntity<Object> getMediated() throws Exception {
+		RawUsageListResponseVO lists = rawUsageService.getRemediatedUsageList();
 		
 		return new ResponseEntity<>(lists, HttpStatus.OK);
 	}	
@@ -77,12 +60,8 @@ public class RawUsageController {
 		
 		searchRawUsageListVO.setSearchRawUsage(searchRawUsageVO);
 		
-		/*
-		IJdbcRepository jdbcRepository = dynamicAutowireRepository.getRepository("RAW");
-		
-		RawUsageListResponseVO lists = jdbcRepository.getRawUsageList(searchRawUsageListVO);
-		RawUsageListResponse response = null;
-		
+		RawUsageListResponse response = rawUsageService.getRawUsageList(searchRawUsageListVO);
+
 		//TODO custom ExceptionHandler
 //		try {
 //			response = Convertor.convert(lists);
@@ -92,11 +71,8 @@ public class RawUsageController {
 //			headers.add("service exception", e.getMessage());
 //			return new ResponseEntity<>(e.getMessage(), headers, HttpStatus.INTERNAL_SERVER_ERROR);
 //		}
-		response = Convertor.convert(lists);
-		*/
 		
 		
-		RawUsageListResponse response = rawUsageService.getRawUsageList(searchRawUsageListVO);
 		
 		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
