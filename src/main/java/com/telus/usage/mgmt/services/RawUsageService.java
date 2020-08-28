@@ -1,14 +1,20 @@
 package com.telus.usage.mgmt.services;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.telus.usage.mgmt.beans.RawUsageListResponseVO;
 import com.telus.usage.mgmt.beans.SearchRawUsageListVO;
+import com.telus.usage.mgmt.beans.SearchRawUsageVO;
 import com.telus.usage.mgmt.repository.DynamicAutowireRepository;
 import com.telus.usage.mgmt.repository.IJdbcRepository;
 import com.telus.usage.mgmt.response.RawUsageListResponse;
+import com.telus.usage.mgmt.util.Constants;
 import com.telus.usage.mgmt.util.Convertor;
+import com.telus.usage.mgmt.util.RepoIndicatorUtil;
 
 @Service
 public class RawUsageService {
@@ -18,7 +24,11 @@ public class RawUsageService {
 	
 	public RawUsageListResponse getRawUsageList(SearchRawUsageListVO searchRawUsageListVO) throws Exception {
 		
-		IJdbcRepository jdbcRepository = dynamicAutowireRepository.getRepository("RAW");
+		SearchRawUsageVO searchRawUsageVO = searchRawUsageListVO.getSearchRawUsage();
+		
+		String repoIndictor = RepoIndicatorUtil.getRepoIndicator(Constants.STATE_RAW, searchRawUsageVO.getServiceType());
+		
+		IJdbcRepository jdbcRepository = dynamicAutowireRepository.getRepository(repoIndictor);
 		
 		RawUsageListResponseVO lists = jdbcRepository.getRawUsageList(searchRawUsageListVO);
 
