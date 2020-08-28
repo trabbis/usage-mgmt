@@ -7,11 +7,11 @@ public class RepoIndicatorUtil {
 
 	private static Map<String, String> repoIndicators = null;
 
-//	public RepoIndicatorUtil() {
 	static {
+		//Keep the first key value in lowerCase and second key value in upperCase to make it more readable
 		repoIndicators = new HashMap<String, String>();
 		repoIndicators.put("rawWISP", "RAW");
-		repoIndicators.put("mediatedSOMETHING", "MEDIATED");
+		repoIndicators.put("mediatedSERVICETYPE", "MEDIATED");
 		
 	}
 	public static String getRepoIndicator(String state, String serviceType) {
@@ -20,7 +20,7 @@ public class RepoIndicatorUtil {
 //    	ServiceFilter[] filters = buildServiceFilters(Constants.STATE_RAW, serviceTypeList); 
 
 		StringBuffer sb = new StringBuffer();
-		sb.append(Constants.STATE_RAW);
+		sb.append(state.toLowerCase());
 		sb.append(serviceType.toUpperCase());
 		
 		return repoIndicators.get(sb.toString());

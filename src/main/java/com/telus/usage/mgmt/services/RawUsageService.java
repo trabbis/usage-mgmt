@@ -25,11 +25,9 @@ public class RawUsageService {
 	public RawUsageListResponse getRawUsageList(SearchRawUsageListVO searchRawUsageListVO) throws Exception {
 		
 		SearchRawUsageVO searchRawUsageVO = searchRawUsageListVO.getSearchRawUsage();
-		
 		String repoIndictor = RepoIndicatorUtil.getRepoIndicator(Constants.STATE_RAW, searchRawUsageVO.getServiceType());
 		
 		IJdbcRepository jdbcRepository = dynamicAutowireRepository.getRepository(repoIndictor);
-		
 		RawUsageListResponseVO lists = jdbcRepository.getRawUsageList(searchRawUsageListVO);
 
 		return Convertor.convert(lists);
@@ -39,7 +37,9 @@ public class RawUsageService {
 	//Just for testing multiple dbs
 	public RawUsageListResponseVO getRemediatedUsageList() throws Exception {
 		
-		IJdbcRepository jdbcRepository = dynamicAutowireRepository.getRepository("MEDIATED");
+		String repoIndictor = RepoIndicatorUtil.getRepoIndicator(Constants.STATE_MEDIATED, "SERVICETYPE");
+		
+		IJdbcRepository jdbcRepository = dynamicAutowireRepository.getRepository(repoIndictor);
 		
 		RawUsageListResponseVO lists = jdbcRepository.getRawUsageList(null);
 
