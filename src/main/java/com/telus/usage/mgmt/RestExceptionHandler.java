@@ -15,11 +15,11 @@ import com.telus.usage.mgmt.exceptions.ConvertorException;
 public class RestExceptionHandler extends ResponseEntityExceptionHandler {
  
     @ExceptionHandler({ ConvertorException.class })
-    protected ResponseEntity<Object> handleNotFound(
-      Exception ex, WebRequest request) {
+    protected ResponseEntity<Object> convertionFailed(Exception ex, WebRequest request) {
     	
-        ApiError apiError = new ApiError(HttpStatus.INTERNAL_SERVER_ERROR, ex);
+        ApiError apiError = new ApiError(HttpStatus.INTERNAL_SERVER_ERROR, ex, request);
         apiError.setMessage(ex.getMessage());
+        
         return buildResponseEntity(apiError);
         
 //        return handleExceptionInternal(ex, "Book not found", 

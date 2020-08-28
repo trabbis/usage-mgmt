@@ -33,13 +33,13 @@ public class Convertor {
 			}
 		}
 		catch(RuntimeException e){
-			throw new ConvertorException("Convert has problem", e);
+			throw new ConvertorException("Conversion has problem", e);
 		}
 		
 		return result;
 	}
 	
-	private static DataServiceEvent[] convertDataServiceEvents(List<DataServiceEventVO> items) throws ConvertorException{
+	private static DataServiceEvent[] convertDataServiceEvents(List<DataServiceEventVO> items) {
 		DataServiceEvent[] result = null;
 		
 			if(items!=null){
@@ -91,6 +91,7 @@ public class Convertor {
 		DataServiceEvent result = new DataServiceEvent();
 		
 			if(item!=null){
+				item = null;
 				result.setChargingId(item.getChargingId());
 				result.setContentDeliveredInd(item.getContentDeliveredInd());
 				result.setContentDownloadByteQuantity(item.getContentDownloadByteQuantity());
