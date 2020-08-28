@@ -33,7 +33,7 @@ public class Convertor {
 			}
 		}
 		catch(RuntimeException e){
-			throw new ConvertorException("Conversion has problem", e);
+			throw new ConvertorException("Conversion failed", e);
 		}
 		
 		return result;
@@ -91,7 +91,6 @@ public class Convertor {
 		DataServiceEvent result = new DataServiceEvent();
 		
 			if(item!=null){
-				item = null;
 				result.setChargingId(item.getChargingId());
 				result.setContentDeliveredInd(item.getContentDeliveredInd());
 				result.setContentDownloadByteQuantity(item.getContentDownloadByteQuantity());

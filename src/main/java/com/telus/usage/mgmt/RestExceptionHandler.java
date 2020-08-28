@@ -11,7 +11,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 import com.telus.usage.mgmt.exceptions.ConvertorException;
 
-@ControllerAdvice
+//@ControllerAdvice
 public class RestExceptionHandler extends ResponseEntityExceptionHandler {
  
     @ExceptionHandler({ ConvertorException.class })
@@ -22,12 +22,13 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
         
         return buildResponseEntity(apiError);
         
-//        return handleExceptionInternal(ex, "Book not found", 
+//        return handleExceptionInternal(ex, "error happend", 
 //          new HttpHeaders(), HttpStatus.NOT_FOUND, request);
+        
     }
  
     private ResponseEntity<Object> buildResponseEntity(ApiError apiError) {
-        return new ResponseEntity<>(apiError, apiError.getStatus());
+        return new ResponseEntity<>(apiError, apiError.getError());
     }
     
     

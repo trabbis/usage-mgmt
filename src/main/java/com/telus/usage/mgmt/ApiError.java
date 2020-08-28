@@ -1,5 +1,7 @@
 package com.telus.usage.mgmt;
 
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.time.LocalDateTime;
 
 import org.springframework.http.HttpStatus;
@@ -9,12 +11,40 @@ public class ApiError {
 
 	//	   @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss")
 	private LocalDateTime timestamp;
-	private HttpStatus status;
-	private String error;
+	private String status;
+	private HttpStatus error;
 	private String message;
-	private String debugMessage;
+	private String rootCause;
 	private String path;
 
+	ApiError(HttpStatus error) {
+		this();
+		this.error = error;
+	}
+
+	ApiError(HttpStatus error, Throwable ex, WebRequest request) {
+		this();
+		this.error = error;
+		this.status = String.valueOf(error.value());
+		
+		StringWriter sw = new StringWriter();
+		PrintWriter pw = new PrintWriter(sw);
+		ex.printStackTrace(pw);
+		String sStackTrace = sw.toString();
+		this.rootCause = sStackTrace; //DEBUG PURPOSE FOR NOW
+//		this.rootCause = ex.getCause().toString(); //getLocalizedMessage(); 
+		
+		this.path = request.getDescription(false);
+		
+	}
+
+	ApiError(HttpStatus error, String message, Throwable ex) {
+		this();
+		this.error = error;
+		this.message = message;
+		this.rootCause = ex.getLocalizedMessage();
+	}
+	
 	
 	public String getPath() {
 		return path;
@@ -24,19 +54,19 @@ public class ApiError {
 		this.path = path;
 	}
 
-	public String getError() {
+	public HttpStatus getError() {
 		return error;
 	}
 
-	public void setError(String error) {
+	public void setError(HttpStatus error) {
 		this.error = error;
 	}
 
-	public HttpStatus getStatus() {
+	public String getStatus() {
 		return status;
 	}
 
-	public void setStatus(HttpStatus status) {
+	public void setStatus(String status) {
 		this.status = status;
 	}
 
@@ -56,37 +86,18 @@ public class ApiError {
 		this.message = message;
 	}
 
-	public String getDebugMessage() {
-		return debugMessage;
+	
+
+	public String getRootCause() {
+		return rootCause;
 	}
 
-	public void setDebugMessage(String debugMessage) {
-		this.debugMessage = debugMessage;
+	public void setRootCause(String rootCause) {
+		this.rootCause = rootCause;
 	}
 
 	private ApiError() {
 		timestamp = LocalDateTime.now();
 	}
 
-	ApiError(HttpStatus status) {
-		this();
-		this.status = status;
-	}
-
-	ApiError(HttpStatus status, Throwable ex, WebRequest request) {
-		this();
-		this.status = status;
-		this.error = String.valueOf(status.value()); //ex.getStackTrace(); //ex.getCause().toString();
-//		this.message = "Unexpected error";
-		this.debugMessage = ex.getCause().toString(); //getLocalizedMessage();
-		this.path = request.getDescription(false);
-		
-	}
-
-	ApiError(HttpStatus status, String message, Throwable ex) {
-		this();
-		this.status = status;
-		this.message = message;
-		this.debugMessage = ex.getLocalizedMessage();
-	}
 }
