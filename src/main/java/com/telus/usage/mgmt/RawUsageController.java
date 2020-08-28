@@ -48,7 +48,7 @@ public class RawUsageController {
 			@RequestParam(value = "phoneNumber", required = true) String phoneNumber,
 			@RequestParam(value = "serviceType", required = true) String serviceType,
 			@RequestParam(value = "fromDate", required = true)  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) String fromDate,
-			@RequestParam(value = "toDate", required = true)  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) String toDate) throws Exception {
+			@RequestParam(value = "toDate", required = true)  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) String toDate) {
 
 		
 		SearchRawUsageListVO searchRawUsageListVO = new SearchRawUsageListVO();

@@ -12,6 +12,7 @@ import com.telus.usage.mgmt.beans.BatchInfoTypeVO;
 import com.telus.usage.mgmt.beans.DataServiceEventVO;
 import com.telus.usage.mgmt.beans.RawUsageListResponseVO;
 import com.telus.usage.mgmt.beans.SearchRawUsageListVO;
+import com.telus.usage.mgmt.exceptions.ConvertorException;
 import com.telus.usage.mgmt.response.BatchInfoType;
 import com.telus.usage.mgmt.response.RawUsageListResponse;
 import com.telus.usage.mgmt.response.beans.DataServiceEvent;
@@ -21,7 +22,7 @@ public class Convertor {
 
 
 	//TODO2
-	public static RawUsageListResponse convert(RawUsageListResponseVO item) throws Exception{
+	public static RawUsageListResponse convert(RawUsageListResponseVO item) throws ConvertorException {
 		RawUsageListResponse result = new RawUsageListResponse();
 		
 		try{
@@ -31,17 +32,16 @@ public class Convertor {
 				result.setRawUsageListType(convertDataServiceEvents(item.getRawUsageList()));				
 			}
 		}
-		catch(Exception e){
-			throw new Exception(e);
+		catch(RuntimeException e){
+			throw new ConvertorException("Convert has problem", e);
 		}
 		
 		return result;
 	}
 	
-	private static DataServiceEvent[] convertDataServiceEvents(List<DataServiceEventVO> items) throws Exception{
+	private static DataServiceEvent[] convertDataServiceEvents(List<DataServiceEventVO> items) throws ConvertorException{
 		DataServiceEvent[] result = null;
 		
-		try{
 			if(items!=null){
 				result=new DataServiceEvent[items.size()];
 				
@@ -49,27 +49,28 @@ public class Convertor {
 					result[i] = convert(items.get(i));
 				}			
 			}			
-		}
-		catch(Exception e){
-			throw new Exception(e);
-		}
+//			try{
+//		}
+//		catch(ConvertorException e){
+//			throw new Exception(e);
+//		}
 							
 		return result == null ? new DataServiceEvent[]{} : result;		
 	}
 	
+	public static BatchInfoType convert(BatchInfoTypeVO item, boolean alfa, boolean beta) {
 
-	public static BatchInfoType convert(BatchInfoTypeVO item, boolean alfa, boolean beta) throws Exception{
 		BatchInfoType result = new BatchInfoType();
 		
-		try{
 			if(item!=null){
 				result.setBatchNumber(convert(item.getBatchNumber()));
 				result.setMoreDataExistInd(item.isMoreDataExistInd());
 			}
-		}
-		catch(Exception e){
-			throw new Exception(e);
-		}
+//			try{
+//		}
+//		catch(Exception e){
+//			throw new Exception(e);
+//		}
 			
 		
 		return result;
@@ -86,10 +87,9 @@ public class Convertor {
 	
 	
 	
-	private static DataServiceEvent convert(DataServiceEventVO item) throws Exception{
+	private static DataServiceEvent convert(DataServiceEventVO item) {
 		DataServiceEvent result = new DataServiceEvent();
 		
-		try{
 			if(item!=null){
 				result.setChargingId(item.getChargingId());
 				result.setContentDeliveredInd(item.getContentDeliveredInd());
@@ -165,10 +165,12 @@ public class Convertor {
 				//only when getting raw details
 //TODO2				result.setRawDataUsageDetail(convert(item.getRawDataUsageDetail()));
 			}			
-		}
-		catch(Exception e ){
-			throw new Exception(e);
-		}
+
+//		try{
+//		}
+//		catch(ConvertorException e ){
+//			throw new ConvertorException(null, e);
+//		}
 		
 		return result;
 		

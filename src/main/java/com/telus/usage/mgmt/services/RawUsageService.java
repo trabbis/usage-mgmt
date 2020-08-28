@@ -22,7 +22,7 @@ public class RawUsageService {
 	@Autowired
 	private DynamicAutowireRepository dynamicAutowireRepository;
 	
-	public RawUsageListResponse getRawUsageList(SearchRawUsageListVO searchRawUsageListVO) throws Exception {
+	public RawUsageListResponse getRawUsageList(SearchRawUsageListVO searchRawUsageListVO) {
 		
 		SearchRawUsageVO searchRawUsageVO = searchRawUsageListVO.getSearchRawUsage();
 		String repoIndictor = RepoIndicatorUtil.getRepoIndicator(Constants.STATE_RAW, searchRawUsageVO.getServiceType());
