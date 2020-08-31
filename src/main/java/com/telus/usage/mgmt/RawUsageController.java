@@ -24,6 +24,7 @@ import com.telus.usage.mgmt.beans.SearchRawUsageListVO;
 import com.telus.usage.mgmt.beans.SearchRawUsageVO;
 import com.telus.usage.mgmt.response.RawUsageListResponse;
 import com.telus.usage.mgmt.services.RawUsageService;
+import com.telus.usage.mgmt.util.Convertor;
 
 
 @RestController
@@ -55,22 +56,20 @@ public class RawUsageController {
 	public @ResponseBody ResponseEntity<Object> getRawUsageList(
 			@RequestParam(value = "phoneNumber", required = true) String phoneNumber,
 			@RequestParam(value = "serviceType", required = true) String serviceType,
-			@RequestParam(value = "batchNumber", required = true) Integer batchNumber,
+			@RequestParam(value = "batchNumber", required = true) Long batchNumber,
 			@RequestParam(value = "fromDate", required = true)  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fromDate,
 			@RequestParam(value = "toDate", required = true)  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate toDate) {
 
 		
-		if (StringUtils.length(phoneNumber) < 10) {
-			throw new ValidationException("Phone number should be at least 10 in length");
-		}
-		
-		SearchRawUsageListVO searchRawUsageListVO = new SearchRawUsageListVO();
 		SearchRawUsageVO searchRawUsageVO = new SearchRawUsageVO();
 		searchRawUsageVO.setFromDate(fromDate.toString());
 		searchRawUsageVO.setToDate(toDate.toString());
 		searchRawUsageVO.setPhoneNumber("1" + phoneNumber);
 		searchRawUsageVO.setServiceType(serviceType);
+		Convertor.validateInputParameters(searchRawUsageVO);
 		
+		SearchRawUsageListVO searchRawUsageListVO = new SearchRawUsageListVO();
+		searchRawUsageListVO.setBatchNumber(batchNumber);
 		searchRawUsageListVO.setSearchRawUsage(searchRawUsageVO);
 		
 		RawUsageListResponse response = rawUsageService.getRawUsageList(searchRawUsageListVO);
@@ -78,6 +77,7 @@ public class RawUsageController {
 		
 		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
+
 	
 	
 	

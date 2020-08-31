@@ -2,16 +2,22 @@ package com.telus.usage.mgmt.util;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
+import javax.validation.ValidationException;
+
+import org.apache.commons.lang3.StringUtils;
+
 import com.telus.usage.mgmt.beans.BatchInfoTypeVO;
 import com.telus.usage.mgmt.beans.DataServiceEventVO;
 import com.telus.usage.mgmt.beans.RawUsageListResponseVO;
 import com.telus.usage.mgmt.beans.SearchRawUsageListVO;
+import com.telus.usage.mgmt.beans.SearchRawUsageVO;
 import com.telus.usage.mgmt.exceptions.ConvertorException;
 import com.telus.usage.mgmt.response.BatchInfoType;
 import com.telus.usage.mgmt.response.RawUsageListResponse;
@@ -20,8 +26,15 @@ import com.telus.usage.mgmt.response.beans.DataServiceEvent;
 
 public class Convertor {
 
+	
+	public static void validateInputParameters(SearchRawUsageVO searchRawUsageVO) {
+		
+		if (StringUtils.length(searchRawUsageVO.getPhoneNumber()) < 10) {
+			throw new ValidationException("Phone number should be at least 10 in length");
+		}
+		
+	}	
 
-	//TODO2
 	public static RawUsageListResponse convert(RawUsageListResponseVO item) throws ConvertorException {
 		RawUsageListResponse result = new RawUsageListResponse();
 		
@@ -49,11 +62,6 @@ public class Convertor {
 					result[i] = convert(items.get(i));
 				}			
 			}			
-//			try{
-//		}
-//		catch(ConvertorException e){
-//			throw new Exception(e);
-//		}
 							
 		return result == null ? new DataServiceEvent[]{} : result;		
 	}
@@ -66,12 +74,6 @@ public class Convertor {
 				result.setBatchNumber(convert(item.getBatchNumber()));
 				result.setMoreDataExistInd(item.isMoreDataExistInd());
 			}
-//			try{
-//		}
-//		catch(Exception e){
-//			throw new Exception(e);
-//		}
-			
 		
 		return result;
 	}
@@ -166,12 +168,6 @@ public class Convertor {
 //TODO2				result.setRawDataUsageDetail(convert(item.getRawDataUsageDetail()));
 			}			
 
-//		try{
-//		}
-//		catch(ConvertorException e ){
-//			throw new ConvertorException(null, e);
-//		}
-		
 		return result;
 		
 	}
