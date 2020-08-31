@@ -64,12 +64,12 @@ public class RawUsageController {
 		SearchRawUsageVO searchRawUsageVO = new SearchRawUsageVO();
 		searchRawUsageVO.setFromDate(fromDate.toString());
 		searchRawUsageVO.setToDate(toDate.toString());
-		searchRawUsageVO.setPhoneNumber("1" + phoneNumber);
+		searchRawUsageVO.setPhoneNumber(phoneNumber);
 		searchRawUsageVO.setServiceType(serviceType);
 		Convertor.validateInputParameters(searchRawUsageVO);
 		
 		SearchRawUsageListVO searchRawUsageListVO = new SearchRawUsageListVO();
-		searchRawUsageListVO.setBatchNumber(batchNumber);
+		searchRawUsageListVO.setBatchNumber(batchNumber == null ? 0L : batchNumber);
 		searchRawUsageListVO.setSearchRawUsage(searchRawUsageVO);
 		
 		RawUsageListResponse response = rawUsageService.getRawUsageList(searchRawUsageListVO);

@@ -29,6 +29,7 @@ public class Convertor {
 	
 	public static void validateInputParameters(SearchRawUsageVO searchRawUsageVO) {
 		
+		searchRawUsageVO.setPhoneNumber("1" + searchRawUsageVO.getPhoneNumber());
 		if (StringUtils.length(searchRawUsageVO.getPhoneNumber()) < 10) {
 			throw new ValidationException("Phone number should be at least 10 in length");
 		}

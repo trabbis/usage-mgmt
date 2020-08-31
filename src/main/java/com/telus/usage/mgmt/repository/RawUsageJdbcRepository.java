@@ -39,10 +39,10 @@ public class RawUsageJdbcRepository implements IUsageManagement {
 			"	data_srvc_event_ts >= to_date(:fromDate, 'YYYY-MM-DD HH24:MI:SS') and " +
 			"	data_srvc_event_ts <= to_date(:toDate, 'YYYY-MM-DD HH24:MI:SS') and " +
 			"	(EVENT_BILLABLE_PHONE_NUM=:phoneNumber or EVENT_BILLABLE_PHONE_NUM=:phoneNumber) and " +
-			"	UPPER(DATA_SRVC_EVENT_TYPE_CD)= :eventTypeCd " +
-			"	and rownum <= 100 "; //TODO remove later
-
-	
+			"	UPPER(DATA_SRVC_EVENT_TYPE_CD)= :eventTypeCd ";
+//			"	and rownum <= 101 "; //TODO remove later
+//  OFFSET 10 ROWS 
+//  FETCH NEXT 10 ROWS ONLY;
 	
 
 	@Override
@@ -54,15 +54,34 @@ public class RawUsageJdbcRepository implements IUsageManagement {
         mapSqlParameterSource.addValue("phoneNumber", searchRawUsageListVO.getSearchRawUsage().getPhoneNumber());
         mapSqlParameterSource.addValue("eventTypeCd", searchRawUsageListVO.getSearchRawUsage().getServiceType());
         
+        StringBuffer sb = new StringBuffer(); 
+        sb.append(SELECT_CIPDR_RAW_USAGE);
+        
+        if (searchRawUsageListVO.getBatchNumber() > 0) {
+            sb.append("OFFSET ");
+            sb.append(100 * searchRawUsageListVO.getBatchNumber());
+            sb.append(" ROWS ");
+        	
+            sb.append(" FETCH NEXT ");
+            sb.append(101);
+            sb.append(" ROWS ONLY ");
+        } else {
+            sb.append(" FETCH NEXT 101 ROWS ONLY ");
+        }
+        
         List<DataServiceEventVO> dataService =  jdbcTemplate.query(
-    			SELECT_CIPDR_RAW_USAGE,
+    			sb.toString(),
                 mapSqlParameterSource,
                 new RawUsageListRowMapper());
         
-        RawUsageListResponseVO rawUsage = new RawUsageListResponseVO(null);
-        rawUsage.setRawUsageList(dataService);
+        RawUsageListResponseVO lists = new RawUsageListResponseVO(searchRawUsageListVO.getBatchNumber());
+        if (dataService.size() > 100) {
+            dataService.remove(100);
+            lists.getBatchInfoTypeVO().setMoreDataExistInd(true);
+        }
+        lists.setRawUsageList(dataService);
         
-        return rawUsage;
+        return lists;
         
         
     }
