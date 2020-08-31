@@ -9,17 +9,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class DynamicAutowireRepository {
+public class RepositoryLookUpService {
 	
-    private final Map<String, IJdbcRepository> repositories;
+    private final Map<String, IUsageManagement> repositories;
     
     @Autowired
-    public DynamicAutowireRepository(List<IJdbcRepository> repositoryLists) {
+    public RepositoryLookUpService(List<IUsageManagement> repositoryLists) {
         repositories = repositoryLists.stream()
-                .collect(Collectors.toMap(IJdbcRepository::getRepositoryCode, Function.identity()));
+                .collect(Collectors.toMap(IUsageManagement::getRepositoryCode, Function.identity()));
     }
  
-    public IJdbcRepository getRepository(String code) {
+    public IUsageManagement getRepository(String code) {
     	return repositories.get(code);
     	
     }

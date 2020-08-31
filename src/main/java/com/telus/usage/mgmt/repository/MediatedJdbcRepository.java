@@ -15,7 +15,7 @@ import com.telus.usage.mgmt.beans.SearchRawUsageListVO;
 import com.telus.usage.mgmt.beans.TestModel;
 
 @Repository
-public class MediatedJdbcRepository implements IJdbcRepository {
+public class MediatedJdbcRepository implements IUsageManagement {
 	
 	@Autowired
 	@Qualifier("m1JdbcTemplate")

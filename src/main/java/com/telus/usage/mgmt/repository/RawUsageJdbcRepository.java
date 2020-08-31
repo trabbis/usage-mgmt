@@ -13,7 +13,7 @@ import com.telus.usage.mgmt.beans.RawUsageListResponseVO;
 import com.telus.usage.mgmt.beans.SearchRawUsageListVO;
 
 @Repository
-public class RawUsageJdbcRepository implements IJdbcRepository {
+public class RawUsageJdbcRepository implements IUsageManagement {
 	
 	@Autowired
 	@Qualifier("primaryJdbcTemplate")

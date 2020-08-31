@@ -10,8 +10,8 @@ import com.telus.usage.mgmt.beans.RawUsageListResponseVO;
 import com.telus.usage.mgmt.beans.SearchRawUsageListVO;
 import com.telus.usage.mgmt.beans.SearchRawUsageVO;
 import com.telus.usage.mgmt.exceptions.ValidationException;
-import com.telus.usage.mgmt.repository.DynamicAutowireRepository;
-import com.telus.usage.mgmt.repository.IJdbcRepository;
+import com.telus.usage.mgmt.repository.RepositoryLookUpService;
+import com.telus.usage.mgmt.repository.IUsageManagement;
 import com.telus.usage.mgmt.response.RawUsageListResponse;
 import com.telus.usage.mgmt.util.Constants;
 import com.telus.usage.mgmt.util.Convertor;
@@ -21,14 +21,14 @@ import com.telus.usage.mgmt.util.RepoIndicatorUtil;
 public class RawUsageService {
 	
 	@Autowired
-	private DynamicAutowireRepository dynamicAutowireRepository;
+	private RepositoryLookUpService dynamicAutowireRepository;
 	
 	public RawUsageListResponse getRawUsageList(SearchRawUsageListVO searchRawUsageListVO) throws ValidationException {
 		
 		SearchRawUsageVO searchRawUsageVO = searchRawUsageListVO.getSearchRawUsage();
 		String repoIndictor = RepoIndicatorUtil.getRepoIndicator(Constants.STATE_RAW, searchRawUsageVO.getServiceType());
 		
-		IJdbcRepository jdbcRepository = dynamicAutowireRepository.getRepository(repoIndictor);
+		IUsageManagement jdbcRepository = dynamicAutowireRepository.getRepository(repoIndictor);
 		RawUsageListResponseVO lists = jdbcRepository.getRawUsageList(searchRawUsageListVO);
 
 		return Convertor.convert(lists);
@@ -40,7 +40,7 @@ public class RawUsageService {
 		
 		String repoIndictor = RepoIndicatorUtil.getRepoIndicator(Constants.STATE_MEDIATED, "SERVICETYPE");
 		
-		IJdbcRepository jdbcRepository = dynamicAutowireRepository.getRepository(repoIndictor);
+		IUsageManagement jdbcRepository = dynamicAutowireRepository.getRepository(repoIndictor);
 		
 		RawUsageListResponseVO lists = jdbcRepository.getRawUsageList(null);
 
