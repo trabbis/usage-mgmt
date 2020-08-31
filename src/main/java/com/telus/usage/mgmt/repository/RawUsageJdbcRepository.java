@@ -36,9 +36,9 @@ public class RawUsageJdbcRepository implements IUsageManagement {
 			" from " +
 			"	data_srvc_event " +
 			" where " +
-//			"	data_srvc_event_ts >= to_date(?, 'YYYY-MM-DD HH24:MI:SS') and " +
-//			"	data_srvc_event_ts <= to_date(?, 'YYYY-MM-DD HH24:MI:SS') and " +
-//			"	(EVENT_BILLABLE_PHONE_NUM=? or EVENT_BILLABLE_PHONE_NUM=?) and " +
+			"	data_srvc_event_ts >= to_date(:fromDate, 'YYYY-MM-DD HH24:MI:SS') and " +
+			"	data_srvc_event_ts <= to_date(:toDate, 'YYYY-MM-DD HH24:MI:SS') and " +
+			"	(EVENT_BILLABLE_PHONE_NUM=:phoneNumber or EVENT_BILLABLE_PHONE_NUM=:phoneNumber) and " +
 			"	UPPER(DATA_SRVC_EVENT_TYPE_CD)= :eventTypeCd " +
 			"	and rownum <= 100 "; //TODO remove later
 
@@ -49,6 +49,9 @@ public class RawUsageJdbcRepository implements IUsageManagement {
     public RawUsageListResponseVO getRawUsageList(SearchRawUsageListVO searchRawUsageListVO) {
 
         MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
+        mapSqlParameterSource.addValue("fromDate", searchRawUsageListVO.getSearchRawUsage().getFromDate());
+        mapSqlParameterSource.addValue("toDate", searchRawUsageListVO.getSearchRawUsage().getToDate());
+        mapSqlParameterSource.addValue("phoneNumber", searchRawUsageListVO.getSearchRawUsage().getPhoneNumber());
         mapSqlParameterSource.addValue("eventTypeCd", searchRawUsageListVO.getSearchRawUsage().getServiceType());
         
         List<DataServiceEventVO> dataService =  jdbcTemplate.query(
