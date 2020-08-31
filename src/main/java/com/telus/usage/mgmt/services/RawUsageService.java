@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.telus.usage.mgmt.beans.RawUsageListResponseVO;
 import com.telus.usage.mgmt.beans.SearchRawUsageListVO;
 import com.telus.usage.mgmt.beans.SearchRawUsageVO;
+import com.telus.usage.mgmt.exceptions.ValidationException;
 import com.telus.usage.mgmt.repository.DynamicAutowireRepository;
 import com.telus.usage.mgmt.repository.IJdbcRepository;
 import com.telus.usage.mgmt.response.RawUsageListResponse;
@@ -22,7 +23,7 @@ public class RawUsageService {
 	@Autowired
 	private DynamicAutowireRepository dynamicAutowireRepository;
 	
-	public RawUsageListResponse getRawUsageList(SearchRawUsageListVO searchRawUsageListVO) {
+	public RawUsageListResponse getRawUsageList(SearchRawUsageListVO searchRawUsageListVO) throws ValidationException {
 		
 		SearchRawUsageVO searchRawUsageVO = searchRawUsageListVO.getSearchRawUsage();
 		String repoIndictor = RepoIndicatorUtil.getRepoIndicator(Constants.STATE_RAW, searchRawUsageVO.getServiceType());

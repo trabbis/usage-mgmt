@@ -58,7 +58,7 @@ public class RawUsageController {
 			@RequestParam(value = "serviceType", required = true) String serviceType,
 			@RequestParam(value = "batchNumber", required = true) Long batchNumber,
 			@RequestParam(value = "fromDate", required = true)  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fromDate,
-			@RequestParam(value = "toDate", required = true)  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate toDate) {
+			@RequestParam(value = "toDate", required = true)  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate toDate) throws Exception {
 
 		
 		SearchRawUsageVO searchRawUsageVO = new SearchRawUsageVO();
@@ -73,7 +73,6 @@ public class RawUsageController {
 		searchRawUsageListVO.setSearchRawUsage(searchRawUsageVO);
 		
 		RawUsageListResponse response = rawUsageService.getRawUsageList(searchRawUsageListVO);
-
 		
 		return new ResponseEntity<>(response, HttpStatus.OK);
 	}

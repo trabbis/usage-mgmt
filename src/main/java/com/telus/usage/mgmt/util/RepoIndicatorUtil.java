@@ -3,6 +3,10 @@ package com.telus.usage.mgmt.util;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.commons.lang3.StringUtils;
+
+import com.telus.usage.mgmt.exceptions.ValidationException;
+
 public class RepoIndicatorUtil {
 
 	private static Map<String, String> repoIndicators = null;
@@ -14,7 +18,7 @@ public class RepoIndicatorUtil {
 		repoIndicators.put("mediatedSERVICETYPE", "MEDIATED");
 		
 	}
-	public static String getRepoIndicator(String state, String serviceType) {
+	public static String getRepoIndicator(String state, String serviceType) throws ValidationException {
 		
 //    	serviceTypeList.add(searchRuVO.getServiceType());	    	
 //    	ServiceFilter[] filters = buildServiceFilters(Constants.STATE_RAW, serviceTypeList); 
@@ -23,7 +27,16 @@ public class RepoIndicatorUtil {
 		sb.append(state.toLowerCase());
 		sb.append(serviceType.toUpperCase());
 		
-		return repoIndicators.get(sb.toString());
+		String repoName = repoIndicators.get(sb.toString());
+		
+		if (StringUtils.isEmpty(repoName)) {
+			throw new ValidationException("Not valid Repo Indicator configured..." + sb.toString());
+			
+		}
+		
+		
+		
+		return repoName;
 		
 	}
 
