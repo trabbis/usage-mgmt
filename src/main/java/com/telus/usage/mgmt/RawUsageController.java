@@ -3,6 +3,7 @@ package com.telus.usage.mgmt;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 import javax.validation.ValidationException;
 import javax.validation.constraints.Size;
@@ -16,11 +17,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.telus.usage.mgmt.beans.RawUsageListResponseVO;
+import com.telus.usage.mgmt.beans.SearchRawUsageDetailVO;
 import com.telus.usage.mgmt.beans.SearchRawUsageListVO;
 import com.telus.usage.mgmt.beans.SearchRawUsageVO;
 import com.telus.usage.mgmt.response.RawUsageListResponse;
@@ -54,6 +57,21 @@ public class RawUsageController {
 		return new ResponseEntity<>(lists, HttpStatus.OK);
 	}	
 
+	@GetMapping("/getRawUsageList/{id}")
+	public @ResponseBody ResponseEntity<Object> getRawUsageList(
+			@PathVariable Long id) throws Exception {
+
+		
+		SearchRawUsageDetailVO searchRawUsageDetailVO = new SearchRawUsageDetailVO();
+		searchRawUsageDetailVO.setDataServiceEventId(id);
+		List<Usage> response = rawUsageService.getRawUsageDetail(searchRawUsageDetailVO);
+		
+		
+		return new ResponseEntity<>(response, HttpStatus.OK);
+	}
+
+	
+	
 	@GetMapping("/getRawUsageList")
 	public @ResponseBody ResponseEntity<Object> getRawUsageList(
 			@RequestParam(value = "phoneNumber", required = true) String phoneNumber,
@@ -79,7 +97,6 @@ public class RawUsageController {
 		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
 
-	
 	
 	
 	

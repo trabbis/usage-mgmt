@@ -10,7 +10,9 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.telus.usage.mgmt.beans.DataServiceEventVO;
+import com.telus.usage.mgmt.beans.RawUsageDetailResponseVO;
 import com.telus.usage.mgmt.beans.RawUsageListResponseVO;
+import com.telus.usage.mgmt.beans.SearchRawUsageDetailVO;
 import com.telus.usage.mgmt.beans.SearchRawUsageListVO;
 import com.telus.usage.mgmt.beans.TestModel;
 
@@ -57,6 +59,12 @@ public class MediatedJdbcRepository implements IUsageManagement {
         rawUsage.setRawUsageList(dataService);
         
 		return rawUsage;
+	}
+
+	@Override
+	public RawUsageDetailResponseVO getRawUsageDetail(SearchRawUsageDetailVO searchRudVO) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 

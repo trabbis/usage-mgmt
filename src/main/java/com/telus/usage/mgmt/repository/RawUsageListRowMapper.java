@@ -11,6 +11,14 @@ import com.telus.usage.mgmt.beans.RawUsageListResponseVO;
 
 public class RawUsageListRowMapper implements RowMapper<DataServiceEventVO> {
 
+	private Boolean detail = false;
+	
+	public RawUsageListRowMapper() {
+	}
+	public RawUsageListRowMapper(Boolean detail) {
+		this.detail = detail;
+	}
+	
 	@Override
 	public DataServiceEventVO mapRow(ResultSet rs, int rowNum) throws SQLException {
 		

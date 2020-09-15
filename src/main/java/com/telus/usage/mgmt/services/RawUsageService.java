@@ -10,7 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.telus.usage.mgmt.beans.DataServiceEventVO;
+import com.telus.usage.mgmt.beans.RawUsageDetailResponseVO;
 import com.telus.usage.mgmt.beans.RawUsageListResponseVO;
+import com.telus.usage.mgmt.beans.SearchRawUsageDetailVO;
 import com.telus.usage.mgmt.beans.SearchRawUsageListVO;
 import com.telus.usage.mgmt.beans.SearchRawUsageVO;
 import com.telus.usage.mgmt.exceptions.ValidationException;
@@ -42,42 +44,22 @@ public class RawUsageService {
 		return usageList; 
 		
 	}
+	
+	public List<Usage> getRawUsageDetail(SearchRawUsageDetailVO searchRawUsageDetailVO) throws ValidationException {
+		
+//		SearchRawUsageVO searchRawUsageVO = searchRawUsageListVO.getSearchRawUsage();
+		String repoIndictor = RepoIndicatorUtil.getRepoIndicator(Constants.STATE_RAW, "WISP");
+		
+		IUsageManagement usageMgmt = repoLookUpService.getRepository(repoIndictor);
+		RawUsageDetailResponseVO lists = usageMgmt.getRawUsageDetail(searchRawUsageDetailVO);
 
-//	private List<Usage> convertTmf635(RawUsageListResponseVO lists) {
-//		List<Usage> usageList = new ArrayList<Usage>();
-//		List<DataServiceEventVO> rawUsageList = lists.getRawUsageList();
-//		for (DataServiceEventVO dataServiceEventVO : rawUsageList) {
-//			Usage usage = new Usage();
-//			
-//			usage.setId(String.valueOf(dataServiceEventVO.getDataServiceEventId()));
-//			usage.setType("raw");
-//			usage.setDate(Instant.now().toString());
-//			
-//			usage.addUsageCharacteristic("dataServiceEventTime", dataServiceEventVO.getDataServiceEventTime());
-//			usage.addUsageCharacteristic("dataServiceEventTypeCd", dataServiceEventVO.getDataServiceEventTypeCd());
-//			usage.addUsageCharacteristic("mediationTransactionId", dataServiceEventVO.getMediationTransactionId());
-//			usage.addUsageCharacteristic("networkFileId", dataServiceEventVO.getNetworkFileId());
-//			
-//			usage.addUsageCharacteristic("sourceNetworkCd", dataServiceEventVO.getSourceNetworkCd());
-////			usage.addUsageCharacteristic("billablePhoneNum", dataServiceEventVO.getBillablePhoneNum()); //TODO
-//			usage.addUsageCharacteristic("imsiNum", dataServiceEventVO.getImsiNum());
-//			usage.addUsageCharacteristic("minNum", dataServiceEventVO.getMinNum());
-//			usage.addUsageCharacteristic("imeiNum", dataServiceEventVO.getImeiNum());
-//			usage.addUsageCharacteristic("servingSidId", dataServiceEventVO.getServingSidId());
-//			usage.addUsageCharacteristic("serviceBidId", dataServiceEventVO.getServiceBidId());
-//			
-//			usage.addUsageCharacteristic("mccMncCd", dataServiceEventVO.getMccMncCd());
-//			usage.addUsageCharacteristic("mocnMccMncCd", dataServiceEventVO.getMocnMccMncCd());
-//			usage.addUsageCharacteristic("contentUploadByteQuantity", dataServiceEventVO.getContentUploadByteQuantity());
-//			usage.addUsageCharacteristic("contentDownloadByteQuantity", dataServiceEventVO.getContentDownloadByteQuantity());
-//			usage.addUsageCharacteristic("deviceDownloadGBQuantity", dataServiceEventVO.getDeviceDownloadGBQuantity());
-//			usage.addUsageCharacteristic("deviceUploadGBQuantity", dataServiceEventVO.getDeviceUploadGBQuantity());
-//			
-//			
-//			usageList.add(usage);
-//		}
-//		return usageList;
-//	}
+//		List<Usage> usageList = Convertor.convertTmf635(lists);
+		
+		//Convertor.convert(lists);
+		return null; 
+		
+	}
+	
 
 	//Just for testing multiple dbs
 	public RawUsageListResponseVO getRemediatedUsageList() throws Exception {
