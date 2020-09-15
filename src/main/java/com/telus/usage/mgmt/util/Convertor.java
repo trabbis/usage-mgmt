@@ -2,6 +2,7 @@ package com.telus.usage.mgmt.util;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.time.Instant;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -21,11 +22,70 @@ import com.telus.usage.mgmt.beans.SearchRawUsageVO;
 import com.telus.usage.mgmt.exceptions.ConvertorException;
 import com.telus.usage.mgmt.response.BatchInfoType;
 import com.telus.usage.mgmt.response.RawUsageListResponse;
+import com.telus.usage.mgmt.response.Usage;
 import com.telus.usage.mgmt.response.beans.DataServiceEvent;
 
 
 public class Convertor {
 
+	public static List<Usage> convertTmf635(RawUsageListResponseVO lists) {
+		List<Usage> usageList = new ArrayList<Usage>();
+		List<DataServiceEventVO> rawUsageList = lists.getRawUsageList();
+		for (DataServiceEventVO dataServiceEventVO : rawUsageList) {
+			Usage usage = new Usage();
+			
+			usage.setId(String.valueOf(dataServiceEventVO.getDataServiceEventId()));
+			usage.setType("raw");
+			usage.setDate(Instant.now().toString());
+			
+			usage.addUsageCharacteristic("dataServiceEventTime", dataServiceEventVO.getDataServiceEventTime());
+			usage.addUsageCharacteristic("dataServiceEventTypeCd", dataServiceEventVO.getDataServiceEventTypeCd());
+			usage.addUsageCharacteristic("mediationTransactionId", dataServiceEventVO.getMediationTransactionId());
+			usage.addUsageCharacteristic("networkFileId", dataServiceEventVO.getNetworkFileId());
+			
+			usage.addUsageCharacteristic("sourceNetworkCd", dataServiceEventVO.getSourceNetworkCd());
+//			usage.addUsageCharacteristic("billablePhoneNum", dataServiceEventVO.getBillablePhoneNum()); //TODO
+			usage.addUsageCharacteristic("imsiNum", dataServiceEventVO.getImsiNum());
+			usage.addUsageCharacteristic("minNum", dataServiceEventVO.getMinNum());
+			usage.addUsageCharacteristic("imeiNum", dataServiceEventVO.getImeiNum());
+			usage.addUsageCharacteristic("servingSidId", dataServiceEventVO.getServingSidId());
+			usage.addUsageCharacteristic("serviceBidId", dataServiceEventVO.getServiceBidId());
+			
+			usage.addUsageCharacteristic("mccMncCd", dataServiceEventVO.getMccMncCd());
+			usage.addUsageCharacteristic("mocnMccMncCd", dataServiceEventVO.getMocnMccMncCd());
+			usage.addUsageCharacteristic("contentUploadByteQuantity", dataServiceEventVO.getContentUploadByteQuantity());
+			usage.addUsageCharacteristic("contentDownloadByteQuantity", dataServiceEventVO.getContentDownloadByteQuantity());
+			usage.addUsageCharacteristic("deviceDownloadGBQuantity", dataServiceEventVO.getDeviceDownloadGBQuantity());
+			usage.addUsageCharacteristic("deviceUploadGBQuantity", dataServiceEventVO.getDeviceUploadGBQuantity());
+			
+			usage.addUsageCharacteristic("deviceUploadByteQuantity", dataServiceEventVO.getDeviceUploadByteQuantity());
+			usage.addUsageCharacteristic("deviceDownloadByteQuantity", dataServiceEventVO.getDeviceDownloadByteQuantity());
+			usage.addUsageCharacteristic("recordId", dataServiceEventVO.getRecordId());
+			usage.addUsageCharacteristic("serviceDurationSecQuantity", dataServiceEventVO.getServiceDurationSecQuantity());
+			usage.addUsageCharacteristic("chargingGatewayFunctionServiceId", dataServiceEventVO.getChargingGatewayFunctionServiceId());
+			usage.addUsageCharacteristic("chargingCharacterCd", dataServiceEventVO.getChargingCharacterCd());
+			usage.addUsageCharacteristic("serviceTechnolgyCd", dataServiceEventVO.getServiceTechnolgyCd());
+			
+			usage.addUsageCharacteristic("userLoginText", dataServiceEventVO.getUserLoginText());
+			usage.addUsageCharacteristic("sessionDomainName", dataServiceEventVO.getSessionDomainName());
+			usage.addUsageCharacteristic("nasIpString", dataServiceEventVO.getNasIpString());
+			usage.addUsageCharacteristic("accessPointNameNetworkString", dataServiceEventVO.getAccessPointNameNetworkString());
+			usage.addUsageCharacteristic("locationAreaCd", dataServiceEventVO.getLocationAreaCd());
+			
+			usage.addUsageCharacteristic("servingNetworkString", dataServiceEventVO.getServingNetworkString());
+			usage.addUsageCharacteristic("subSidId", dataServiceEventVO.getSubSidId());
+			usage.addUsageCharacteristic("contentDeliveredInd", dataServiceEventVO.getContentDeliveredInd());
+			usage.addUsageCharacteristic("hostDomainName", dataServiceEventVO.getHostDomainName());
+			usage.addUsageCharacteristic("requestedURLString", dataServiceEventVO.getRequestedURLString());
+			usage.addUsageCharacteristic("contentURLString", dataServiceEventVO.getContentURLString());
+			usage.addUsageCharacteristic("multiplexId", dataServiceEventVO.getMultiplexId());
+			
+			
+			usageList.add(usage);
+		}
+		return usageList;
+	}
+	
 	
 	public static void validateInputParameters(SearchRawUsageVO searchRawUsageVO) {
 		

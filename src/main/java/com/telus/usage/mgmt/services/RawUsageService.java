@@ -36,30 +36,48 @@ public class RawUsageService {
 		IUsageManagement usageMgmt = repoLookUpService.getRepository(repoIndictor);
 		RawUsageListResponseVO lists = usageMgmt.getRawUsageList(searchRawUsageListVO);
 
-		//TODO convert to tmf structure
-		List<Usage> usageList = new ArrayList<Usage>();
-		List<DataServiceEventVO> rawUsageList = lists.getRawUsageList();
-		for (DataServiceEventVO dataServiceEventVO : rawUsageList) {
-			Usage usage = new Usage();
-			
-			usage.setId(String.valueOf(dataServiceEventVO.getDataServiceEventId()));
-			usage.setType("raw");
-			usage.setDate(Instant.now().toString());
-			
-			usage.addUsageCharacteristic("dataServiceEventTypeCd", dataServiceEventVO.getDataServiceEventTypeCd());
-			usage.addUsageCharacteristic("networkFileId", dataServiceEventVO.getNetworkFileId());
-			usage.addUsageCharacteristic("mediationTransactionId", dataServiceEventVO.getMediationTransactionId());
-			
-//			usage.addUsageCharateristic2("dataServiceEventTypeCd", dataServiceEventVO.getDataServiceEventTypeCd());
-//			usage.addUsageCharateristic2("networkFileId", dataServiceEventVO.getNetworkFileId());
-//			usage.addUsageCharateristic2("mediationTransactionId", dataServiceEventVO.getMediationTransactionId());
-			usageList.add(usage);
-		}
+		List<Usage> usageList = Convertor.convertTmf635(lists);
 		
 		//Convertor.convert(lists);
 		return usageList; 
 		
 	}
+
+//	private List<Usage> convertTmf635(RawUsageListResponseVO lists) {
+//		List<Usage> usageList = new ArrayList<Usage>();
+//		List<DataServiceEventVO> rawUsageList = lists.getRawUsageList();
+//		for (DataServiceEventVO dataServiceEventVO : rawUsageList) {
+//			Usage usage = new Usage();
+//			
+//			usage.setId(String.valueOf(dataServiceEventVO.getDataServiceEventId()));
+//			usage.setType("raw");
+//			usage.setDate(Instant.now().toString());
+//			
+//			usage.addUsageCharacteristic("dataServiceEventTime", dataServiceEventVO.getDataServiceEventTime());
+//			usage.addUsageCharacteristic("dataServiceEventTypeCd", dataServiceEventVO.getDataServiceEventTypeCd());
+//			usage.addUsageCharacteristic("mediationTransactionId", dataServiceEventVO.getMediationTransactionId());
+//			usage.addUsageCharacteristic("networkFileId", dataServiceEventVO.getNetworkFileId());
+//			
+//			usage.addUsageCharacteristic("sourceNetworkCd", dataServiceEventVO.getSourceNetworkCd());
+////			usage.addUsageCharacteristic("billablePhoneNum", dataServiceEventVO.getBillablePhoneNum()); //TODO
+//			usage.addUsageCharacteristic("imsiNum", dataServiceEventVO.getImsiNum());
+//			usage.addUsageCharacteristic("minNum", dataServiceEventVO.getMinNum());
+//			usage.addUsageCharacteristic("imeiNum", dataServiceEventVO.getImeiNum());
+//			usage.addUsageCharacteristic("servingSidId", dataServiceEventVO.getServingSidId());
+//			usage.addUsageCharacteristic("serviceBidId", dataServiceEventVO.getServiceBidId());
+//			
+//			usage.addUsageCharacteristic("mccMncCd", dataServiceEventVO.getMccMncCd());
+//			usage.addUsageCharacteristic("mocnMccMncCd", dataServiceEventVO.getMocnMccMncCd());
+//			usage.addUsageCharacteristic("contentUploadByteQuantity", dataServiceEventVO.getContentUploadByteQuantity());
+//			usage.addUsageCharacteristic("contentDownloadByteQuantity", dataServiceEventVO.getContentDownloadByteQuantity());
+//			usage.addUsageCharacteristic("deviceDownloadGBQuantity", dataServiceEventVO.getDeviceDownloadGBQuantity());
+//			usage.addUsageCharacteristic("deviceUploadGBQuantity", dataServiceEventVO.getDeviceUploadGBQuantity());
+//			
+//			
+//			usageList.add(usage);
+//		}
+//		return usageList;
+//	}
 
 	//Just for testing multiple dbs
 	public RawUsageListResponseVO getRemediatedUsageList() throws Exception {
