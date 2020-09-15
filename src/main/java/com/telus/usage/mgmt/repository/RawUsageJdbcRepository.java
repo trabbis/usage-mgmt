@@ -134,16 +134,13 @@ public class RawUsageJdbcRepository implements IUsageManagement {
         DataServiceEventVO dataService =  jdbcTemplate.queryForObject(
     			sb.toString(),
                 mapSqlParameterSource,
-                new RawUsageListRowMapper());
+                new RawUsageListRowMapper(true));
         
-//        RawUsageListResponseVO lists = new RawUsageListResponseVO(searchRawUsageListVO.getBatchNumber());
-//        if (dataService.size() > 100) {
-//            dataService.remove(100);
-//            lists.getBatchInfoTypeVO().setMoreDataExistInd(true);
-//        }
-//        lists.setRawUsageList(dataService);
+        RawUsageDetailResponseVO detail = new RawUsageDetailResponseVO();
+        detail.setRawUsageDetail(dataService);
         
-        return null;
+        return detail;
+        
 	}
 
 

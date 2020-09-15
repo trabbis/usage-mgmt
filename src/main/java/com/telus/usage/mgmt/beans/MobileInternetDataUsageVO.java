@@ -22,8 +22,8 @@ public class MobileInternetDataUsageVO extends ValueObject {
 	private String recordVersionCd;
 	
 	private String potentialDuplicateCd;
-	private Long cdrTotalQuatity;
-	private Long cdrTotalVolumeQuatity;
+	private String cdrTotalQuatity;
+	private String cdrTotalVolumeQuatity;
 	private String validationCd;
 	private String napiMsisdnCd;
 	private String accessPointNameOperatorString;
@@ -35,11 +35,11 @@ public class MobileInternetDataUsageVO extends ValueObject {
 	private String chargingTypeSelectionModeCd;
 	private String chargingClassCd;
 	private Long uplinkHitQuantity;
-	private Long downlinkHitQuantity;
+	private String downlinkHitQuantity;
 	private Double openingTimezoneSecondQuantity;
 	private String walletId;
 	private String walletChargingTypeCd;
-	private Double closingTimezoneSecondQuantity;
+	private String closingTimezoneSecondQuantity;
 	private Double firstSequenceNum;
 	private Double lastSequenceNum;
 	private String cdrStoredCd;
@@ -163,16 +163,16 @@ public class MobileInternetDataUsageVO extends ValueObject {
 	public void setPotentialDuplicateCd(String potentialDuplicateCd) {
 		this.potentialDuplicateCd = potentialDuplicateCd;
 	}
-	public Long getCdrTotalQuatity() {
+	public String getCdrTotalQuatity() {
 		return cdrTotalQuatity;
 	}
-	public void setCdrTotalQuatity(Long cdrTotalQuatity) {
+	public void setCdrTotalQuatity(String cdrTotalQuatity) {
 		this.cdrTotalQuatity = cdrTotalQuatity;
 	}
-	public Long getCdrTotalVolumeQuatity() {
+	public String getCdrTotalVolumeQuatity() {
 		return cdrTotalVolumeQuatity;
 	}
-	public void setCdrTotalVolumeQuatity(Long cdrTotalVolumeQuatity) {
+	public void setCdrTotalVolumeQuatity(String cdrTotalVolumeQuatity) {
 		this.cdrTotalVolumeQuatity = cdrTotalVolumeQuatity;
 	}
 	public String getValidationCd() {
@@ -243,10 +243,10 @@ public class MobileInternetDataUsageVO extends ValueObject {
 	public void setUplinkHitQuantity(Long uplinkHitQuantity) {
 		this.uplinkHitQuantity = uplinkHitQuantity;
 	}
-	public Long getDownlinkHitQuantity() {
+	public String getDownlinkHitQuantity() {
 		return downlinkHitQuantity;
 	}
-	public void setDownlinkHitQuantity(Long downlinkHitQuantity) {
+	public void setDownlinkHitQuantity(String downlinkHitQuantity) {
 		this.downlinkHitQuantity = downlinkHitQuantity;
 	}
 	public Double getOpeningTimezoneSecondQuantity() {
@@ -268,11 +268,11 @@ public class MobileInternetDataUsageVO extends ValueObject {
 	public void setWalletChargingTypeCd(String walletChargingTypeCd) {
 		this.walletChargingTypeCd = walletChargingTypeCd;
 	}
-	public Double getClosingTimezoneSecondQuantity() {
+	public String getClosingTimezoneSecondQuantity() {
 		return closingTimezoneSecondQuantity;
 	}
 	public void setClosingTimezoneSecondQuantity(
-			Double closingTimezoneSecondQuantity) {
+			String closingTimezoneSecondQuantity) {
 		this.closingTimezoneSecondQuantity = closingTimezoneSecondQuantity;
 	}
 	public Double getFirstSequenceNum() {

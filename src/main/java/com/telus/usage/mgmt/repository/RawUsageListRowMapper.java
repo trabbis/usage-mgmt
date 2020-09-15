@@ -7,12 +7,21 @@ import org.springframework.jdbc.core.RowCallbackHandler;
 import org.springframework.jdbc.core.RowMapper;
 
 import com.telus.usage.mgmt.beans.DataServiceEventVO;
+import com.telus.usage.mgmt.beans.MobileInternetDataUsageVO;
+import com.telus.usage.mgmt.beans.RawDataUsageDetailVO;
 import com.telus.usage.mgmt.beans.RawUsageListResponseVO;
 
 public class RawUsageListRowMapper implements RowMapper<DataServiceEventVO> {
 
 	private Boolean detail = false;
 	
+	
+	public Boolean getDetail() {
+		return detail;
+	}
+	public void setDetail(Boolean detail) {
+		this.detail = detail;
+	}
 	public RawUsageListRowMapper() {
 	}
 	public RawUsageListRowMapper(Boolean detail) {
@@ -95,6 +104,67 @@ public class RawUsageListRowMapper implements RowMapper<DataServiceEventVO> {
 		result.setServedPacketDataProtocolAddressTxt(rs.getString("SERVED_PDP_ADDRESS_STR"));
 		result.setNetworkTypeCd(rs.getString("NETWORK_TYPE_CD"));
 
+		
+		if (getDetail()) {
+			RawDataUsageDetailVO rdud = result.getRawDataUsageDetail();    		        		
+			MobileInternetDataUsageVO midu = rdud.getMobileInternetDataUsage();
+			
+			midu.setAccessPointNameOperatorString(rs.getString("APN_OPERATOR_STR"));
+			midu.setAccessTypeCd(rs.getString("ACCESS_TYPE_CD"));
+			midu.setCdrStoredCd(rs.getString("CDR_STORED_CD"));
+			midu.setCdrTotalQuatity(rs.getString("CDR_TOTAL_QTY"));
+			midu.setCdrTotalVolumeQuatity(rs.getString("CDR_TOTAL_VOLUME_QTY"));
+			midu.setChargingCharacterSelectionModeCd(rs.getString("CHARGING_CHARAC_SEL_MODE_CD"));
+			midu.setChargingClassCd(rs.getString("CHARGING_CLASS_CD"));
+			midu.setChargingProfileCd(rs.getString("CHARGING_PROFILE_CD"));
+			midu.setChargingTypeCd(rs.getString("CHARGING_TYPE_CD"));
+			midu.setChargingTypeSelectionModeCd(rs.getString("CHARGING_TYPE_SEL_MODE_CD"));
+			midu.setClosingTimezoneSecondQuantity(rs.getString("CLOSING_TIMEZONE_SECOND_QTY"));
+			midu.setDiagnostics1Cd(rs.getString("DIAGNOSTICS_1_CD"));
+			midu.setDiagnostics2Cd(rs.getString("DIAGNOSTICS_2_CD"));
+			midu.setDiagnostics3Cd(rs.getString("DIAGNOSTICS_3_CD"));
+			midu.setDiagnostics4Cd(rs.getString("DIAGNOSTICS_4_CD"));
+			midu.setDiagnostics5Cd(rs.getString("DIAGNOSTICS_5_CD"));
+			midu.setDownlinkHitQuantity(rs.getString("DOWNLINK_HIT_QTY"));
+			midu.setDynamicAddressFlagCd(rs.getString("DYNAMIC_ADDRESS_FLAG_CD"));
+//			midu.setFirstSequenceNum(getDouble(set, "FIRST_SEQUENCE_NUM"));
+			midu.setIpTechnologyCd(rs.getString("IP_TECHNOLOGY_CD"));
+//			midu.setLastSequenceNum(getDouble(set, "LAST_SEQUENCE_NUM"));
+			midu.setMobileStationNetworkCapabilityCd(rs.getString("MS_NW_CAPABILITY_CD"));
+			midu.setNapiMsisdnCd(rs.getString("NAPI_MSISDN_CD"));
+			midu.setNetworkInitPacketDataProtocolContextInd(rs.getString("NETWORK_INIT_PDP_CONTEXT_IND"));
+			
+			midu.setNodeId(rs.getString("NODE_ID"));
+			
+//			midu.setOpeningTimezoneSecondQuantity(getDouble(set, "OPENING_TIMEZONE_SECOND_QTY"));
+			midu.setPacketDataProtocolHlrIndexCd(rs.getString("PDP_HLR_INDEX_CD"));
+			midu.setPotentialDuplicateCd(rs.getString("POTENTIAL_DUPLICATE_CD"));
+			midu.setQualityOfServiceNegotiatedString(rs.getString("QOS_NEGOTIATED_STR"));
+			midu.setQualityOfServiceRequestedString(rs.getString("QOS_REQUESTED_STR"));
+
+			midu.setRecordCorrelationId(rs.getString("RECORD_CORRELATION_ID"));
+			
+			midu.setRecordId(rs.getString("RECORD_ID"));
+			
+			midu.setRecordVersionCd(rs.getString("RECORD_VERSION_CD"));
+			midu.setRoutingAreaCd(rs.getString("ROUTING_AREA_CD"));
+			midu.setServedPacketDataProtocolAddressExtString(rs.getString("SERVED_PDP_ADDR_EXT_STR"));
+			midu.setServedPacketDataProtocolAddressString(rs.getString("SERVED_PDP_ADDRESS_STR"));
+			midu.setServedPacketDataProtocolTypeOrgCd(rs.getString("SERVED_PDP_TYPE_ORG_CD"));
+			midu.setServedPacketDataProtocolTypeValueCd(rs.getString("SERVED_PDP_TYPE_VALUE_CD"));
+			midu.setServerId(rs.getString("SERVER_ID"));        		
+			midu.setSessionActionCd(rs.getString("SESSION_ACTION_CD"));
+			midu.setSessionId(rs.getString("SESSION_ID"));
+			midu.setSgsnChangeCd(rs.getString("SGSN_CHANGE_CD"));
+			midu.setSourceDeviceIpString(rs.getString("SOURCE_DEVICE_IP_STR"));
+			midu.setSystemTypeCd(rs.getString("SYSTEM_TYPE_CD"));
+//			midu.setUplinkHitQuantity(getLong(set, "UPLINK_HIT_QTY"));
+			midu.setValidationCd(rs.getString("VALIDATION_CD"));
+			midu.setWalletChargingTypeCd(rs.getString("WALLET_CHARGING_TYPE_CD"));
+			midu.setWalletId(rs.getString("WALLET_ID"));    		
+			
+		}
+		
 		
 		
 		return result;
