@@ -2,6 +2,7 @@ package com.telus.usage.mgmt;
 
 
 import java.time.LocalDate;
+import java.util.List;
 
 import javax.validation.ValidationException;
 import javax.validation.constraints.Size;
@@ -23,6 +24,7 @@ import com.telus.usage.mgmt.beans.RawUsageListResponseVO;
 import com.telus.usage.mgmt.beans.SearchRawUsageListVO;
 import com.telus.usage.mgmt.beans.SearchRawUsageVO;
 import com.telus.usage.mgmt.response.RawUsageListResponse;
+import com.telus.usage.mgmt.response.Usage;
 import com.telus.usage.mgmt.services.RawUsageService;
 import com.telus.usage.mgmt.util.Convertor;
 
@@ -72,7 +74,7 @@ public class RawUsageController {
 		searchRawUsageListVO.setBatchNumber(batchNumber == null ? 0L : batchNumber);
 		searchRawUsageListVO.setSearchRawUsage(searchRawUsageVO);
 		
-		RawUsageListResponse response = rawUsageService.getRawUsageList(searchRawUsageListVO);
+		List<Usage> response = rawUsageService.getRawUsageList(searchRawUsageListVO);
 		
 		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
