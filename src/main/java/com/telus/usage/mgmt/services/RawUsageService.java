@@ -44,6 +44,7 @@ public class RawUsageService {
 			
 //			usage.addUsageCharacteristic("", "");
 			
+			
 		}
 		
 		return Convertor.convert(lists);
