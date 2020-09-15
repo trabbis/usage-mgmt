@@ -238,7 +238,7 @@ public class Convertor {
 	    		result.setMocnMccMncCd(item.getMocnMccMncCd());
 	    		result.setMultiplexId(item.getMultiplexId());
 //TODO2	    		result.setRecordClosingTime(convert(item.getRecordClosingTime()));
-	    		result.setRecordSequenceNum(item.getRecordSequenceNum());
+//TODO2	    		result.setRecordSequenceNum(item.getRecordSequenceNum());
 	    		result.setServiceAreaCd(item.getServiceAreaCd());
 	    		result.setTerminationReasonCd(item.getTerminationReasonCd());
 	    		result.setTitleName(item.getTitleName());

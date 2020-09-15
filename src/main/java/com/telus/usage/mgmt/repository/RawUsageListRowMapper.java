@@ -15,7 +15,6 @@ public class RawUsageListRowMapper implements RowMapper<DataServiceEventVO> {
 	public DataServiceEventVO mapRow(ResultSet rs, int rowNum) throws SQLException {
 		
 		DataServiceEventVO result = new DataServiceEventVO();
-		result.setPhoneNumber(rs.getString("EVENT_BILLABLE_PHONE_NUM"));    		
 
 		result.setChargingId(rs.getString("CHARGING_ID"));   
 		result.setContentDeliveredInd(rs.getString("CONTENT_DELIVERED_IND"));
@@ -73,7 +72,7 @@ public class RawUsageListRowMapper implements RowMapper<DataServiceEventVO> {
 		result.setMocnMccMncCd(rs.getString("MOCN_MCC_MNC_CD"));
 		result.setMultiplexId(rs.getString("MULTIPLEX_ID"));
 		result.setRecordClosingTime(rs.getDate("RECORD_CLOSING_TS"));
-//		result.setRecordSequenceNum(rs.getDoubleNVL("RECORD_SEQ_NUM")); //TODO
+		result.setRecordSequenceNum(rs.getString("RECORD_SEQ_NUM"));
 		result.setServiceAreaCd(rs.getString("SERVICE_AREA_CD"));
 		result.setTerminationReasonCd(rs.getString("TERMINATION_REASON_CD"));
 		result.setTitleName(rs.getString("TITLE_NM"));

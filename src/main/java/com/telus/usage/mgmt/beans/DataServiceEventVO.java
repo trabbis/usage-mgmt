@@ -62,7 +62,7 @@ public class DataServiceEventVO extends ValueObject {
 	private String multiplexId;
 	private String otherPartyPhoneNum;
 	private Date recordClosingTime;
-	private Double recordSequenceNum;
+	private String recordSequenceNum;
 	private String recordStatusCd;
 	private String serviceAreaCd;
 	private String terminationReasonCd;
@@ -547,11 +547,11 @@ public class DataServiceEventVO extends ValueObject {
 		this.recordClosingTime = recordClosingTime;
 	}
 
-	public Double getRecordSequenceNum() {
+	public String getRecordSequenceNum() {
 		return recordSequenceNum;
 	}
 
-	public void setRecordSequenceNum(Double recordSequenceNum) {
+	public void setRecordSequenceNum(String recordSequenceNum) {
 		this.recordSequenceNum = recordSequenceNum;
 	}
 
