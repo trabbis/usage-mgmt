@@ -80,6 +80,34 @@ public class Convertor {
 			usage.addUsageCharacteristic("contentURLString", dataServiceEventVO.getContentURLString());
 			usage.addUsageCharacteristic("multiplexId", dataServiceEventVO.getMultiplexId());
 			
+			usage.addUsageCharacteristic("statusRequestCd", dataServiceEventVO.getStatusRequestCd());
+			usage.addUsageCharacteristic("statusResponseCd", dataServiceEventVO.getStatusResponseCd());
+			usage.addUsageCharacteristic("recordSequenceNum", dataServiceEventVO.getRecordSequenceNum());
+			usage.addUsageCharacteristic("chargingId", dataServiceEventVO.getChargingId());
+			usage.addUsageCharacteristic("recordClosingTime", dataServiceEventVO.getRecordClosingTime());
+			usage.addUsageCharacteristic("serviceAreaCd", dataServiceEventVO.getServiceAreaCd());
+			usage.addUsageCharacteristic("terminationReasonCd", dataServiceEventVO.getTerminationReasonCd());
+			usage.addUsageCharacteristic("accountingPlanName", dataServiceEventVO.getAccountingPlanName());
+			usage.addUsageCharacteristic("recordDuplicateCheckNum", dataServiceEventVO.getRecordDuplicateCheckNum());
+			usage.addUsageCharacteristic("cellSiteId", dataServiceEventVO.getCellSiteId());
+			usage.addUsageCharacteristic("titleName", dataServiceEventVO.getTitleName());
+			usage.addUsageCharacteristic("artistName", dataServiceEventVO.getArtistName());
+			usage.addUsageCharacteristic("genre", dataServiceEventVO.getGenre());
+			
+			usage.addUsageCharacteristic("otherPartyPhoneNum", dataServiceEventVO.getOtherPartyPhoneNum());
+			usage.addUsageCharacteristic("contentSizeQuantity", dataServiceEventVO.getContentSizeQuantity());
+			usage.addUsageCharacteristic("recordTypeCd", dataServiceEventVO.getRecordTypeCd());
+			usage.addUsageCharacteristic("recordStatusCd", dataServiceEventVO.getRecordStatusCd());
+			usage.addUsageCharacteristic("furnishChargingCd", dataServiceEventVO.getFurnishChargingCd());
+			usage.addUsageCharacteristic("chargingResultCd", dataServiceEventVO.getChargingResultCd());
+			usage.addUsageCharacteristic("createUserId", dataServiceEventVO.getCreateUserId());
+			usage.addUsageCharacteristic("createTime", dataServiceEventVO.getCreateTime());
+			usage.addUsageCharacteristic("radioAccessTechTypeCd", dataServiceEventVO.getRadioAccessTechTypeCd());
+			usage.addUsageCharacteristic("servedPacketDataProtocolAddressTxt", dataServiceEventVO.getServedPacketDataProtocolAddressTxt());
+			usage.addUsageCharacteristic("networkTypeCd", dataServiceEventVO.getNetworkTypeCd());
+			usage.addUsageCharacteristic("rawDataUsageDetail", dataServiceEventVO.getRawDataUsageDetail());
+			usage.addUsageCharacteristic("sgsnaddressString", dataServiceEventVO.getSGSNAddressString());
+			usage.addUsageCharacteristic("ggsnaddressString", dataServiceEventVO.getGGSNAddressString());
 			
 			usageList.add(usage);
 		}
