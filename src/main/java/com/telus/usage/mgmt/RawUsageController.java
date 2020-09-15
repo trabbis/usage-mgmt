@@ -56,7 +56,7 @@ public class RawUsageController {
 	public @ResponseBody ResponseEntity<Object> getRawUsageList(
 			@RequestParam(value = "phoneNumber", required = true) String phoneNumber,
 			@RequestParam(value = "serviceType", required = true) String serviceType,
-			@RequestParam(value = "batchNumber", required = true) Long batchNumber,
+			@RequestParam(value = "batchNumber", required = false) Long batchNumber,
 			@RequestParam(value = "fromDate", required = true)  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fromDate,
 			@RequestParam(value = "toDate", required = true)  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate toDate) throws Exception {
 

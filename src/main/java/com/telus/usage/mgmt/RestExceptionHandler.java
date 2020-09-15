@@ -17,8 +17,8 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 import com.telus.usage.mgmt.exceptions.ConvertorException;
 
 //TODO The limitation is that default handling is gone.
-//@ControllerAdvice
-public class RestExceptionHandler extends ResponseEntityExceptionHandler {
+@ControllerAdvice
+public class RestExceptionHandler {
  
 //    //@Validate For Validating Path Variables and Request Parameters
 //    @ExceptionHandler(ConstraintViolationException.class)
