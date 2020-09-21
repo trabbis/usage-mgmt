@@ -33,9 +33,9 @@ import com.telus.mediation.usage.tmf635.util.Convertor;
 
 
 @RestController
-public class RawUsageController {
+public class UsageMgmtController {
 
-	private static Logger log = LoggerFactory.getLogger(RawUsageController.class);
+	private static Logger log = LoggerFactory.getLogger(UsageMgmtController.class);
 	
 	@Autowired
 	private RawUsageService rawUsageService;
