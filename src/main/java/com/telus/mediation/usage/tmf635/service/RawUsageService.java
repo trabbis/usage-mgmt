@@ -1,4 +1,4 @@
-package com.telus.usage.mgmt.services;
+package com.telus.mediation.usage.tmf635.service;
 
 import java.time.Instant;
 import java.util.ArrayList;
@@ -9,20 +9,20 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.telus.usage.mgmt.beans.DataServiceEventVO;
-import com.telus.usage.mgmt.beans.RawUsageDetailResponseVO;
-import com.telus.usage.mgmt.beans.RawUsageListResponseVO;
-import com.telus.usage.mgmt.beans.SearchRawUsageDetailVO;
-import com.telus.usage.mgmt.beans.SearchRawUsageListVO;
-import com.telus.usage.mgmt.beans.SearchRawUsageVO;
-import com.telus.usage.mgmt.exceptions.ValidationException;
-import com.telus.usage.mgmt.repository.RepositoryLookUpService;
-import com.telus.usage.mgmt.repository.IUsageManagement;
-import com.telus.usage.mgmt.response.RawUsageListResponse;
-import com.telus.usage.mgmt.response.Usage;
-import com.telus.usage.mgmt.util.Constants;
-import com.telus.usage.mgmt.util.Convertor;
-import com.telus.usage.mgmt.util.RepoIndicatorUtil;
+import com.telus.mediation.usage.tmf635.exception.ValidationException;
+import com.telus.mediation.usage.tmf635.model.DataServiceEventVO;
+import com.telus.mediation.usage.tmf635.model.RawUsageDetailResponseVO;
+import com.telus.mediation.usage.tmf635.model.RawUsageListResponseVO;
+import com.telus.mediation.usage.tmf635.model.SearchRawUsageDetailVO;
+import com.telus.mediation.usage.tmf635.model.SearchRawUsageListVO;
+import com.telus.mediation.usage.tmf635.model.SearchRawUsageVO;
+import com.telus.mediation.usage.tmf635.repository.IUsageManagement;
+import com.telus.mediation.usage.tmf635.repository.RepositoryLookUpService;
+import com.telus.mediation.usage.tmf635.response.RawUsageListResponse;
+import com.telus.mediation.usage.tmf635.response.Usage;
+import com.telus.mediation.usage.tmf635.util.Constants;
+import com.telus.mediation.usage.tmf635.util.Convertor;
+import com.telus.mediation.usage.tmf635.util.RepoIndicatorUtil;
 
 @Service
 public class RawUsageService {

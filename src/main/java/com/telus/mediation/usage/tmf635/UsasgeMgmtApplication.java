@@ -1,4 +1,4 @@
-package com.telus.usage.mgmt;
+package com.telus.mediation.usage.tmf635;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

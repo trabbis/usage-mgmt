@@ -1,4 +1,4 @@
-package com.telus.usage.mgmt.util;
+package com.telus.mediation.usage.tmf635.util;
 
 public class Constants {
 	//TODO - modify version for deployment

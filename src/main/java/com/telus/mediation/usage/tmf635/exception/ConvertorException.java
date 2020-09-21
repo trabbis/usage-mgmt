@@ -1,4 +1,4 @@
-package com.telus.usage.mgmt.exceptions;
+package com.telus.mediation.usage.tmf635.exception;
 
 public class ConvertorException extends RuntimeException {
 

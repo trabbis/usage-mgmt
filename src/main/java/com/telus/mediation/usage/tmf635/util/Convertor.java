@@ -1,4 +1,4 @@
-package com.telus.usage.mgmt.util;
+package com.telus.mediation.usage.tmf635.util;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -14,16 +14,16 @@ import javax.validation.ValidationException;
 
 import org.apache.commons.lang3.StringUtils;
 
-import com.telus.usage.mgmt.beans.BatchInfoTypeVO;
-import com.telus.usage.mgmt.beans.DataServiceEventVO;
-import com.telus.usage.mgmt.beans.RawUsageListResponseVO;
-import com.telus.usage.mgmt.beans.SearchRawUsageListVO;
-import com.telus.usage.mgmt.beans.SearchRawUsageVO;
-import com.telus.usage.mgmt.exceptions.ConvertorException;
-import com.telus.usage.mgmt.response.BatchInfoType;
-import com.telus.usage.mgmt.response.RawUsageListResponse;
-import com.telus.usage.mgmt.response.Usage;
-import com.telus.usage.mgmt.response.beans.DataServiceEvent;
+import com.telus.mediation.usage.tmf635.exception.ConvertorException;
+import com.telus.mediation.usage.tmf635.model.BatchInfoTypeVO;
+import com.telus.mediation.usage.tmf635.model.DataServiceEventVO;
+import com.telus.mediation.usage.tmf635.model.RawUsageListResponseVO;
+import com.telus.mediation.usage.tmf635.model.SearchRawUsageListVO;
+import com.telus.mediation.usage.tmf635.model.SearchRawUsageVO;
+import com.telus.mediation.usage.tmf635.response.BatchInfoType;
+import com.telus.mediation.usage.tmf635.response.RawUsageListResponse;
+import com.telus.mediation.usage.tmf635.response.Usage;
+import com.telus.mediation.usage.tmf635.response.model.DataServiceEvent;
 
 
 public class Convertor {

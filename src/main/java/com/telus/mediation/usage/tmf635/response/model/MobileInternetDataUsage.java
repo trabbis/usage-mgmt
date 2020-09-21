@@ -1,7 +1,7 @@
 /**
  * Generated from schema type t=MobileInternetDataUsage@http://xmlschema.tmi.telus.com/xsd/Resource/Resource/RawDataServiceUsageCommonResource_v4
  */
-package com.telus.usage.mgmt.response.beans;
+package com.telus.mediation.usage.tmf635.response.model;
 
 public class MobileInternetDataUsage implements java.io.Serializable {
 

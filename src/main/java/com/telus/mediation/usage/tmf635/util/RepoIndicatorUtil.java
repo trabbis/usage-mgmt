@@ -1,11 +1,11 @@
-package com.telus.usage.mgmt.util;
+package com.telus.mediation.usage.tmf635.util;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
 
-import com.telus.usage.mgmt.exceptions.ValidationException;
+import com.telus.mediation.usage.tmf635.exception.ValidationException;
 
 public class RepoIndicatorUtil {
 

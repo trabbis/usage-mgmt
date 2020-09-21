@@ -1,4 +1,4 @@
-package com.telus.usage.mgmt.response;
+package com.telus.mediation.usage.tmf635.response;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -1,7 +1,7 @@
 /**
  * Generated from schema type t=RawUsageCountResponse@http://xmlschema.tmi.telus.com/srv/CMO/BillingInquiryMgmt/RawDataUsageServiceRequestResponse_v3
  */
-package com.telus.usage.mgmt.response;
+package com.telus.mediation.usage.tmf635.response;
 
 public class RawUsageCountResponse implements java.io.Serializable {
 

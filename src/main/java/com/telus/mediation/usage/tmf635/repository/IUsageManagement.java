@@ -1,9 +1,9 @@
-package com.telus.usage.mgmt.repository;
+package com.telus.mediation.usage.tmf635.repository;
 
-import com.telus.usage.mgmt.beans.RawUsageDetailResponseVO;
-import com.telus.usage.mgmt.beans.RawUsageListResponseVO;
-import com.telus.usage.mgmt.beans.SearchRawUsageDetailVO;
-import com.telus.usage.mgmt.beans.SearchRawUsageListVO;
+import com.telus.mediation.usage.tmf635.model.RawUsageDetailResponseVO;
+import com.telus.mediation.usage.tmf635.model.RawUsageListResponseVO;
+import com.telus.mediation.usage.tmf635.model.SearchRawUsageDetailVO;
+import com.telus.mediation.usage.tmf635.model.SearchRawUsageListVO;
 
 public interface IUsageManagement {
 

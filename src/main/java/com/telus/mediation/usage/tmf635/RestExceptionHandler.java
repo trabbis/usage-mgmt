@@ -1,4 +1,4 @@
-package com.telus.usage.mgmt;
+package com.telus.mediation.usage.tmf635;
 
 import java.io.IOException;
 
@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-import com.telus.usage.mgmt.exceptions.ConvertorException;
+import com.telus.mediation.usage.tmf635.exception.ConvertorException;
 
 //TODO The limitation is that default handling is gone.
 @ControllerAdvice

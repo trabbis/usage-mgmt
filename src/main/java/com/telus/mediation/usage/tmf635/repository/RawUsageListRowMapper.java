@@ -1,4 +1,4 @@
-package com.telus.usage.mgmt.repository;
+package com.telus.mediation.usage.tmf635.repository;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -6,10 +6,10 @@ import java.sql.SQLException;
 import org.springframework.jdbc.core.RowCallbackHandler;
 import org.springframework.jdbc.core.RowMapper;
 
-import com.telus.usage.mgmt.beans.DataServiceEventVO;
-import com.telus.usage.mgmt.beans.MobileInternetDataUsageVO;
-import com.telus.usage.mgmt.beans.RawDataUsageDetailVO;
-import com.telus.usage.mgmt.beans.RawUsageListResponseVO;
+import com.telus.mediation.usage.tmf635.model.DataServiceEventVO;
+import com.telus.mediation.usage.tmf635.model.MobileInternetDataUsageVO;
+import com.telus.mediation.usage.tmf635.model.RawDataUsageDetailVO;
+import com.telus.mediation.usage.tmf635.model.RawUsageListResponseVO;
 
 public class RawUsageListRowMapper implements RowMapper<DataServiceEventVO> {
 

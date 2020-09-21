@@ -1,4 +1,4 @@
-package com.telus.usage.mgmt.repository;
+package com.telus.mediation.usage.tmf635.repository;
 
 import java.util.List;
 import java.util.Map;

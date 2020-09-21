@@ -1,4 +1,4 @@
-package com.telus.usage.mgmt.beans;
+package com.telus.mediation.usage.tmf635.model;
 
 import java.util.Date;
 

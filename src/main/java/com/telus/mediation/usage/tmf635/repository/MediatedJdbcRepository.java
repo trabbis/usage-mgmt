@@ -1,4 +1,4 @@
-package com.telus.usage.mgmt.repository;
+package com.telus.mediation.usage.tmf635.repository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,12 +9,12 @@ import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import com.telus.usage.mgmt.beans.DataServiceEventVO;
-import com.telus.usage.mgmt.beans.RawUsageDetailResponseVO;
-import com.telus.usage.mgmt.beans.RawUsageListResponseVO;
-import com.telus.usage.mgmt.beans.SearchRawUsageDetailVO;
-import com.telus.usage.mgmt.beans.SearchRawUsageListVO;
-import com.telus.usage.mgmt.beans.TestModel;
+import com.telus.mediation.usage.tmf635.model.DataServiceEventVO;
+import com.telus.mediation.usage.tmf635.model.RawUsageDetailResponseVO;
+import com.telus.mediation.usage.tmf635.model.RawUsageListResponseVO;
+import com.telus.mediation.usage.tmf635.model.SearchRawUsageDetailVO;
+import com.telus.mediation.usage.tmf635.model.SearchRawUsageListVO;
+import com.telus.mediation.usage.tmf635.model.TestModel;
 
 @Repository
 public class MediatedJdbcRepository implements IUsageManagement {

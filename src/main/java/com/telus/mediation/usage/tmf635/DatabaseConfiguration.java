@@ -1,4 +1,4 @@
-package com.telus.usage.mgmt;
+package com.telus.mediation.usage.tmf635;
 
 import javax.sql.DataSource;
 
