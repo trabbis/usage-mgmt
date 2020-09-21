@@ -8,11 +8,10 @@
 		<version>2.1.2.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.example</groupId>
-	<artifactId>demo</artifactId>
+	<groupId>telus.mediation</groupId>
+	<artifactId>usage-mgmt</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>demo</name>
-	<description>Demo project for Spring Boot</description>
+	<name>usage-mgmt-api</name>
 
 	<properties>
 		<java.version>1.8</java.version>
@@ -80,4 +79,5 @@
 		</plugins>
 	</build>
 
+	<description>tmf365 usage management</description>
 </project>
